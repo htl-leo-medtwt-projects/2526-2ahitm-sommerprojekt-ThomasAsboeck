@@ -1,0 +1,26 @@
+#Player {
+    position: absolute;
+    transform-origin: center;
+    top: 50vh;
+    left: 50vw;
+    width: 5vh;
+    height: 5vh;
+    z-index: 999;
+}
+
+#PlayerHead {
+    background-color: red;
+    width: 5vh;
+    height: 5vh;
+}
+
+#Map {
+    background-image: url(../img/testBackground.jpg);
+    width: 1000vw;
+    height: 1000vh;
+    position: absolute;
+    transform-origin: center;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+}
