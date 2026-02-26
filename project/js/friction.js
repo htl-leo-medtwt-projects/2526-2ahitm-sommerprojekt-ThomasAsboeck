@@ -1,32 +1,112 @@
-let maxSpeed = 100;
-let counter = 2;
+let counterX;
+let counterY
+let minCounter;
+let resistanceCounter = 2;
 
-function friction(speed, requiresNewCounter) {
-    let tempSpeed = speed;
-    let isNegative = false;
+function frictionX(speed, requiresNewCounter, changePositive) {
+    if (changePositive) {
 
-    if(requiresNewCounter) {
-        counter = 2;
-    }
+        if (requiresNewCounter) {
+            counterY = 2;
+            minCounter = speed + 5;
+        }
 
-    if(speed < 0) {
-        tempSpeed = speed * -1;
-        isNegative = true;
-    }
-
-    if(tempSpeed >= 100) {
-        tempSpeed = 100;
-    }
-    else {
-        tempSpeed = Math.sqrt(counter, 1.5);
-        counter = Math.sqrt(counter, 1.5);
-        if(counter >= 10) {
-            counter = 10;
+        if (speed >= 100) {
+            speed = 100;
+        }
+        else if (speed < minCounter) {
+            speed++;
+        }
+        else {
+            speed += Math.sqrt(counterY, 1.5);
+            counterY += Math.sqrt(counterY, 1.5);
         }
     }
-    speed = tempSpeed;
-    if(isNegative) {
-        speed = tempSpeed * -1;
+    else {
+
+        if (requiresNewCounter) {
+            counterY = 2;
+            minCounter = speed - 5;
+        }
+
+        if (speed <= -100) {
+            speed = -100;
+        }
+        else if (speed > minCounter) {
+            speed--;
+        }
+        else {
+            speed -= Math.sqrt(counterY, 1.5);
+            counterY += Math.sqrt(counterY, 1.5);
+        }
     }
+    if (counterY >= 10) {
+        counterY = 10;
+    }
+    return speed;
+}
+
+function frictionY(speed, requiresNewCounter, changePositive) {
+    if (changePositive) {
+
+        if (requiresNewCounter) {
+            counterY = 2;
+            minCounter = speed + 5;
+        }
+
+        if (speed >= 100) {
+            speed = 100;
+        }
+        else if (speed < minCounter) {
+            speed++;
+        }
+        else {
+            speed += Math.sqrt(counterY, 1.5);
+            counterY += Math.sqrt(counterY, 1.5);
+        }
+    }
+    else {
+
+        if (requiresNewCounter) {
+            counterY = 2;
+            minCounter = speed - 5;
+        }
+
+        if (speed <= -100) {
+            speed = -100;
+        }
+        else if (speed > minCounter) {
+            speed--;
+        }
+        else {
+            speed -= Math.sqrt(counterY, 1.5);
+            counterY += Math.sqrt(counterY, 1.5);
+        }
+    }
+    if (counterY >= 10) {
+        counterY = 10;
+    }
+    return speed;
+}
+
+function resistance(speed, requiresNewCounter) {
+    if (requiresNewCounter) {
+        resistanceCounter = 2;
+    }
+    if (speed < -2) {
+        speed += Math.sqrt(resistanceCounter, 1.5);
+        resistanceCounter += Math.sqrt(resistanceCounter, 1.5);
+    }
+    else if (speed > 2) {
+        speed -= Math.sqrt(resistanceCounter, 1.5);
+        resistanceCounter += Math.sqrt(resistanceCounter, 1.5);
+    }
+    else {
+        speed = 0;
+    }
+    if (resistanceCounter > 10) {
+        resistanceCounter = 10;
+    }
+    console.log("resistance function called");
     return speed;
 }
