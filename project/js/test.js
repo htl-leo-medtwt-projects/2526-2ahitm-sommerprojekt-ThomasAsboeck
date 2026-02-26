@@ -2,7 +2,8 @@ let KEY_EVENTS = {
     keyUp: false,
     keyDown: false,
     keyLeft: false,
-    keyRight: false
+    keyRight: false,
+    keySpace: false
 }
 document.onkeydown = keyListenerDown;
 document.onkeyup = keyListenerUp;
@@ -20,6 +21,9 @@ function keyListenerDown(e) {
     if (e.key === "s") { // Down arrow
         KEY_EVENTS.keyDown = true;
     }
+    if (e.key === " ") {
+        KEY_EVENTS.keySpace = true;
+    }
 }
 function keyListenerUp(e) {
     if (e.key === "a") { // Left arrow
@@ -33,5 +37,8 @@ function keyListenerUp(e) {
     }
     if (e.key === "s") { // Down arrow
         KEY_EVENTS.keyDown = false;
+    }
+    if (e.key === " ") {
+        KEY_EVENTS.keySpace = false;
     }
 }

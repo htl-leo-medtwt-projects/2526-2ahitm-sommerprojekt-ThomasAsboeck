@@ -2,6 +2,7 @@ let counterX;
 let counterY
 let minCounter;
 let resistanceCounter = 2;
+let maxSpeed = 100;
 
 function frictionX(speed, requiresNewCounter, changePositive) {
     if (changePositive) {
@@ -11,13 +12,16 @@ function frictionX(speed, requiresNewCounter, changePositive) {
             minCounter = speed + 5;
         }
 
-        if (speed >= 100) {
-            speed = 100;
+        if (speed >= maxSpeed && isJumping) {
+            speed = maxSpeed;
         }
-        else if (speed < minCounter) {
+        else if (speed >= maxSpeed && speed < 105) {
+            speed = maxSpeed
+        }
+        else if (speed < minCounter && speed < maxSpeed) {
             speed++;
         }
-        else {
+        else if (speed < maxSpeed){
             speed += Math.sqrt(counterY, 1.5);
             counterY += Math.sqrt(counterY, 1.5);
         }
@@ -28,14 +32,17 @@ function frictionX(speed, requiresNewCounter, changePositive) {
             counterY = 2;
             minCounter = speed - 5;
         }
-
-        if (speed <= -100) {
-            speed = -100;
+        
+        if (speed <= -maxSpeed && isJumping) {
+            speed = -maxSpeed;
         }
-        else if (speed > minCounter) {
+        else if (speed <= -maxSpeed && speed > -105) {
+            speed = -maxSpeed
+        }
+        else if (speed > minCounter && speed > -maxSpeed) {
             speed--;
         }
-        else {
+        else if (speed > -maxSpeed) {
             speed -= Math.sqrt(counterY, 1.5);
             counterY += Math.sqrt(counterY, 1.5);
         }
@@ -54,13 +61,16 @@ function frictionY(speed, requiresNewCounter, changePositive) {
             minCounter = speed + 5;
         }
 
-        if (speed >= 100) {
-            speed = 100;
+        if (speed >= maxSpeed && isJumping) {
+            speed = maxSpeed;
         }
-        else if (speed < minCounter) {
+        else if (speed >= maxSpeed && speed < 150) {
+            speed = maxSpeed
+        }
+        else if (speed < minCounter && speed < maxSpeed) {
             speed++;
         }
-        else {
+        else if (speed < maxSpeed){
             speed += Math.sqrt(counterY, 1.5);
             counterY += Math.sqrt(counterY, 1.5);
         }
@@ -72,13 +82,16 @@ function frictionY(speed, requiresNewCounter, changePositive) {
             minCounter = speed - 5;
         }
 
-        if (speed <= -100) {
-            speed = -100;
+        if (speed <= -maxSpeed && isJumping) {
+            speed = -maxSpeed;
         }
-        else if (speed > minCounter) {
+        else if (speed <= -maxSpeed && speed > -150) {
+            speed = -maxSpeed
+        }
+        else if (speed > minCounter && speed > -maxSpeed) {
             speed--;
         }
-        else {
+        else if (speed > -maxSpeed) {
             speed -= Math.sqrt(counterY, 1.5);
             counterY += Math.sqrt(counterY, 1.5);
         }
@@ -94,12 +107,12 @@ function resistance(speed, requiresNewCounter) {
         resistanceCounter = 2;
     }
     if (speed < -2) {
-        speed += Math.sqrt(resistanceCounter, 1.5);
-        resistanceCounter += Math.sqrt(resistanceCounter, 1.5);
+        speed += Math.sqrt(resistanceCounter, 2);
+        resistanceCounter += Math.sqrt(resistanceCounter, 2);
     }
     else if (speed > 2) {
-        speed -= Math.sqrt(resistanceCounter, 1.5);
-        resistanceCounter += Math.sqrt(resistanceCounter, 1.5);
+        speed -= Math.sqrt(resistanceCounter, 2);
+        resistanceCounter += Math.sqrt(resistanceCounter, 2);
     }
     else {
         speed = 0;
