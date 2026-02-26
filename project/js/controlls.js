@@ -1,4 +1,5 @@
 /// <reference path="test.js"/>
+/// <reference path="friction.js"/>
 
 let VELOCITY = {
     vx: 0.0,
@@ -11,52 +12,42 @@ let COORDINATES = {
     y: 0
 }
 
-let wasPositive;
-let isPositive;
+let isAlreadyMovingXPositive = false;
+let isAlreadyMovingXNegative = false;
+let isAlreadyMovingYPositive = false;
+let isAlreadyMovingYNegative = false;
 let didNothingY = false;
 let didNothingX = false;
 
 function updateMovement() {
     if (KEY_EVENTS.keyRight) {
-        isPositive = true;
-        VELOCITY.vx = friction(VELOCITY.vx);
-        wasPositive = true;
+        VELOCITY.vx = friction(VELOCITY.vx, isAlreadyMovingXPositive);
+        isAlreadyMovingXPositive = true;
+    }
+    else {
+        isAlreadyMovingXPositive = false;
     }
     if (KEY_EVENTS.keyLeft) {
-        isPositive = false;
-        VELOCITY.vx = -1 * friction(VELOCITY.vx * -1);
-        wasPositive = false;
+        VELOCITY.vx = friction(VELOCITY.vx, isAlreadyMovingXNegative);
+        isAlreadyMovingXNegative = true;
+    }
+    else {
+        isAlreadyMovingXNegative = false;
     }
     if (KEY_EVENTS.keyUp) {
-        isPositive = true;
-        VELOCITY.vy = friction(VELOCITY.vy);
-        wasPositive = true;
+        VELOCITY.vy = friction(VELOCITY.vy, isAlreadyMovingYPositive);
+        isAlreadyMovingYPositive = true;
+    }
+    else {
+        isAlreadyMovingYPositive = false;
     }
     if (KEY_EVENTS.keyDown) {
-        isPositive = false;
-        VELOCITY.vy = -1 * friction(VELOCITY.vy * -1);
-        wasPositive = false;
-    }
-
-
-
-    if (!KEY_EVENTS.keyRight && !KEY_EVENTS.keyLeft) {
-        VELOCITY.vx = slowDown(VELOCITY.vx, didNothingX);
-        didNothingX = true;
+        VELOCITY.vy = friction(VELOCITY.vy, isAlreadyMovingYNegative);
+        isAlreadyMovingYNegative = true;
     }
     else {
-        didNothingX = false;
+        isAlreadyMovingYNegative = false;
     }
-
-    if (!KEY_EVENTS.keyUp && !KEY_EVENTS.keyDown) {
-        VELOCITY.vy = slowDown(VELOCITY.vy, didNothingY);
-        didNothingY = true;
-    }
-    else {
-        didNothingY = false;
-    }
-
-
 
     console.log(VELOCITY.vx + " vx " + VELOCITY.vy + " vy|||" + didNothingX + " did Nothing X, " + didNothingY + " did Nothing y");
 
@@ -128,35 +119,6 @@ function slowDown(speed, didNothing) {
     }
     if(!didNothing) {
         console.log(didNothing);
-    }
-    return speed;
-}
-
-
-
-function friction(speed) {
-    let positiveSpeed = speed;
-    if (wasPositive != isPositive) {
-        friction_minSpeed = speed + 5;
-        friction_lowerThreshHold = speed + 20;
-    }
-    if (speed < 0) {
-        positiveSpeed = speed + 100;
-    }
-    if (speed >= friction_maxSpeed) {
-        speed = 100;
-    }
-    else if (speed < friction_minSpeed) {
-        speed++;
-    }
-    else if (speed < friction_lowerThreshHold) {
-        speed += Math.sqrt(positiveSpeed, 1.1);
-    }
-    else if (speed < friction_upperThreshHold) {
-        speed += Math.sqrt(20, 1.1);
-    }
-    else if (speed > friction_upperThreshHold && speed < friction_maxSpeed) {
-        speed += Math.sqrt(20, 0.8);
     }
     return speed;
 }
