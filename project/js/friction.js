@@ -107,6 +107,6 @@ function resistance(speed, requiresNewCounter) {
     if (resistanceCounter > 10) {
         resistanceCounter = 10;
     }
-    console.log("resistance function called");
+    //console.log("resistance function called");
     return speed;
 }
