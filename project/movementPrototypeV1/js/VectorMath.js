@@ -1,7 +1,47 @@
-// VectorMath.js
+
+
+//const for calculating things
 const VectorMath = {
 
-    // Get angle (radians) from player center to mouse
+    //get the direction of movement, depending on where the mouse is located
+    forwardX() {
+        return Math.cos(this.yaw());
+    },
+    forwardY() {
+        return Math.sin(this.yaw());
+    },
+    rightX() {
+        return Math.sin(this.yaw());
+    },
+    rightY() {
+        return -Math.cos(this.yaw());
+    },
+
+    //Calculate the Wish velocity (target velocity)
+    wishVelX() {
+        return this.forwardX() * KEY_EVENTS.fmove + this.rightX() * KEY_EVENTS.smove;
+    },
+    wishVelY() {
+        return this.forwardY() * KEY_EVENTS.fmove + this.rightY() * KEY_EVENTS.smove;
+    },
+    wishVelLength() {
+        return Math.sqrt(this.wishVelX() * this.wishVelX() + this.wishVelY() * this.wishVelY());
+    },
+
+    //Calculate the direction of the velocity (where it is applied)
+    wishDirX() {
+        return this.wishVelX() / this.wishVelLength() || 0;
+    },
+    wishDirY() {
+        return this.wishVelY() / this.wishVelLength() || 0;
+    },
+
+    //Check to not go above max speed (320 units)... We will get to this later...
+    wishSpeed() {
+        return Math.min(this.wishVelLength(), 320)
+    },
+
+    //Calculate Angle of the 
     yaw() {
         const Coordinates = {
             playerX: 0,
@@ -13,57 +53,4 @@ const VectorMath = {
         const dy = Coordinates.mouseY - Coordinates.playerY;
         return Math.atan2(dy, dx);
     },
-
-
-    forwardX() {
-        return Math.cos(yaw());
-    },
-    forwardY() {
-        return Math.sin(yaw());
-    },
-    rightX() {
-        return Math.sin(yaw());
-    },
-    rightY() {
-        return -Math.cos(yaw());
-    },
-
-    wishVelX() {
-        return forwardX() * KEY_EVENTS.fmove + rightX() * KEY_EVENTS.smove;
-    },
-    wishVelY() {
-        return forwardY() * KEY_EVENTS.fmove + rightY() * KEY_EVENTS.smove;
-    },
-    wishVelLength() {
-        return Math.sqrt(wishVelX() * wishVelX() + wishVelY() * wishVelY());
-    },
-
-    wishDirX() {
-        return wishVelX() / wishVelLength() || 0;
-    },
-    wishDirY() {
-        return wishVelY() / wishVelLength() || 0;
-    },
-    wishSpeed() {
-        return Math.min(wishVelLength(), 320)
-    },
-
-    // Get normalized direction vector from player to mouse
-    getDirToMouse(playerX, playerY, mouseX, mouseY) {
-        const dx = mouseX - playerX;
-        const dy = mouseY - playerY;
-        const len = Math.hypot(dx, dy);
-
-        if (len === 0) return { x: 0, y: 0 };
-
-        return {
-            x: dx / len,
-            y: dy / len
-        };
-    },
-
-    // Get perpendicular (strafe) direction (rotate 90° CCW)
-    getStrafeDir(dirX, dirY) {
-        return { x: -dirY, y: dirX };
-    }
 };

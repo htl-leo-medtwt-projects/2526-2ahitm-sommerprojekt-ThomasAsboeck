@@ -16,5 +16,5 @@ function accelerate(velX, velY, wishDirX, wishDirY, wishSpeed, accel, dt) {
             velY + actualAdd * wishDirY
         ]
     }
-    return
+    return result;
 }
