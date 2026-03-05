@@ -11,10 +11,10 @@ const VectorMath = {
         return Math.sin(this.yaw());
     },
     rightX() {
-        return Math.sin(this.yaw());
+        return -Math.sin(this.yaw());
     },
     rightY() {
-        return -Math.cos(this.yaw());
+        return Math.cos(this.yaw());
     },
 
     //Calculate the Wish velocity (target velocity)
@@ -38,19 +38,13 @@ const VectorMath = {
 
     //Check to not go above max speed (320 units)... We will get to this later...
     wishSpeed() {
-        return Math.min(this.wishVelLength(), 320)
+        return Math.min(this.wishVelLength(), 320);
     },
 
     //Calculate Angle of the 
     yaw() {
-        const Coordinates = {
-            playerX: 0,
-            playerY: 0,
-            mouseX: KEY_EVENTS.mouseX,
-            mouseY: KEY_EVENTS.mouseY
-        }
-        const dx = Coordinates.mouseX - Coordinates.playerX;
-        const dy = Coordinates.mouseY - Coordinates.playerY;
-        return Math.atan2(dy, dx);
-    },
+        const dx = KEY_EVENTS.mouseX - VARIABLES.coordinatesX;
+        const dy = VARIABLES.coordinatesY - KEY_EVENTS.mouseY;
+        return Math.atan2(dy, dx);  // <- FIXED: no -dx
+    }
 };
