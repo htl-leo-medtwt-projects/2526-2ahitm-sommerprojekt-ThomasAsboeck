@@ -1,0 +1,34 @@
+@font-face {
+    font-family: Jacquard12;
+    src: url(../font/Jacquard12-Regular.ttf);
+}
+
+body {
+    height: 360px;
+    width: 640px;
+    image-rendering: pixelated;
+    background-image: url(../img/images/mainMenuBackground.jpg);
+    background-size: 640px 360px;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+#main-menu-container {
+    background-color: #182935;
+    width: 160px;
+    height: 360px;
+    margin-left: 80px;
+}
+
+.main-menu-button {
+    font-family: Jacquard12;
+    font-size: 24px;
+    display: flex;
+    background-color: #FCA173;
+    color: #383838;
+    margin: 0 16px 16px 16px;
+    width: 128px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+}
