@@ -41,6 +41,10 @@ body {
     justify-content: center;
 }
 
+.main-menu-button:hover {
+    cursor: pointer;
+}
+
 #title-main-menu {
     font-size: 42px;
     color: #C7C7C7;
