@@ -4,13 +4,22 @@
 }
 
 body {
+    margin: 0;
     height: 360px;
     width: 640px;
     image-rendering: pixelated;
+    background-color: black;
+    font-family: Jacquard12;
+}
+
+#screen {
+    transform-origin: top left;
+    transform: scale(2);
+    height: 360px;
+    width: 640px;
     background-image: url(../img/images/mainMenuBackground.jpg);
-    background-size: 640px 360px;
     background-repeat: no-repeat;
-    margin: 0;
+    background-size: 640px 360px;
 }
 
 #main-menu-container {
@@ -21,7 +30,6 @@ body {
 }
 
 .main-menu-button {
-    font-family: Jacquard12;
     font-size: 24px;
     display: flex;
     background-color: #FCA173;
@@ -31,4 +39,14 @@ body {
     height: 32px;
     align-items: center;
     justify-content: center;
+}
+
+#title-main-menu {
+    font-size: 42px;
+    color: #C7C7C7;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    padding-top: 13px;
+    margin-bottom: 21px;
 }
