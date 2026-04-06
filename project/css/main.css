@@ -14,12 +14,14 @@ body {
 
 #screen {
     transform-origin: top left;
-    transform: scale(2);
+    transform: scale(1);
     height: 360px;
     width: 640px;
     background-image: url(../img/images/mainMenuBackground.jpg);
     background-repeat: no-repeat;
     background-size: 640px 360px;
+    margin-top: 0;
+    overflow: hidden;
 }
 
 #main-menu-container {
@@ -53,4 +55,38 @@ body {
     height: fit-content;
     padding-top: 13px;
     margin-bottom: 21px;
+}
+
+#level-select-container {
+    margin: auto;
+    margin-bottom: 88px;
+    margin-top: 88px;
+    height: 184px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #182935;
+}
+
+.level-preview-container {
+    background-color: #FCA173;
+    width: 160px;
+    height: 90px;
+    margin: 20px;
+}
+
+.level-button-container {
+    background-color: #F68031;
+    width: 128px;
+    height: 32px;
+    margin: 0 auto 20px auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #383838;
+}
+
+.level-button-container:hover {
+    cursor: pointer;
 }
