@@ -1,4 +1,5 @@
 function enterLevelSelectFromMainMenu() {
+    isOnSettingsPage = false;
     let html = "";
     html = `<div id="level-select-container">
 
@@ -22,20 +23,26 @@ function enterLevelSelectFromMainMenu() {
 }
 
 function enterSettingsFromMainMenu() {
+    isOnSettingsPage = true;
     let html = "";
     html = `<div id="settings-container">
                 
                 <div id="settings-volume-container" class="individuial-settings-container">
-                    <div id="settings-volume-title" class="settings-title"></div>
-                    <input type="range" min="0" max="100" step="1"value="100">
+                    <div id="settings-volume-title" class="settings-title">Volume</div>
+                    <input type="range" min="0" max="1" step="0.01" value="1" class="settings-slider" id="settings-volume-slider">
                 </div>
 
                 <div id="settings-music-container" class="individuial-settings-container">
+                    <div id="settings-music-title" class="settings-title">Music</div>
+                    <input type="range" min="0" max="1" step="0.01" value="1" class="settings-slider" id="settings-music-slider">
                 </div>
 
                 <div id="settings-shaking-container" class="individuial-settings-container">
+                    <div id="settings-shaking-title" class="settings-title">Shaking</div>
+                    <div id="settings-shaking-toggle" class="settings-toggle"></div>
                 </div>
 
             </div>`;
     document.getElementById("screen").innerHTML = html;   
+    updateSettings();
 }
