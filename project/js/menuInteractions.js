@@ -19,7 +19,7 @@ function enterLevelSelectFromMainMenu() {
                 </div>
 
             </div>`;
-    document.getElementById("screen").innerHTML = html;   
+    document.getElementById("screen").innerHTML = html;
 }
 
 function enterSettingsFromMainMenu() {
@@ -42,7 +42,38 @@ function enterSettingsFromMainMenu() {
                     <div id="settings-shaking-toggle" class="settings-toggle"></div>
                 </div>
 
+                <div id="settings-sand-container" class="individuial-settings-container">
+                    <div id="settings-sand-title" class="settings-title">Toggle of death</div>
+                    <div id="settings-sand-toggle" class="settings-toggle"></div>
+                </div>
+
             </div>`;
-    document.getElementById("screen").innerHTML = html;   
+    document.getElementById("screen").innerHTML = html;
     updateSettings();
+}
+
+function enterMainMenu() {
+    isOnSettingsPage = false;
+    let html = "";
+    html = `<div id="main-menu-container">
+            <div id="title-main-menu">
+                Gears of Blood
+            </div>
+            <div id="play-story-button-main-menu" class="main-menu-button" onclick="enterStoryFromMainMenu()">
+                Play Story
+            </div>
+            <div id="select-level-button-main-menu" class="main-menu-button" onclick="enterLevelSelectFromMainMenu()">
+                Select Level
+            </div>
+            <div id="play-endless-button-main-menu" class="main-menu-button" onclick="enterEndlessFromMainMenu()">
+                Play Endless
+            </div>
+            <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
+                Tutorial
+            </div>
+            <div id="settings-button-main-menu" class="main-menu-button" onclick="enterSettingsFromMainMenu()">
+                Settings
+            </div>
+        </div>`
+    document.getElementById("screen").innerHTML = html;
 }

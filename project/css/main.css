@@ -3,6 +3,11 @@
     src: url(../font/Jacquard12-Regular.ttf);
 }
 
+@font-face {
+    font-family: Comic_Sand;
+    src: url(../font/DefNotComicSans.ttf);
+}
+
 body {
     margin: 0;
     height: 360px;
@@ -14,7 +19,7 @@ body {
 
 #screen {
     transform-origin: top left;
-    transform: scale(1);
+    transform: scale(4);
     height: 360px;
     width: 640px;
     background-image: url(../img/images/mainMenuBackground.jpg);
@@ -90,3 +95,7 @@ body {
 .level-button-container:hover {
     cursor: pointer;
 }
+
+/*Fremdcode Start*/
+/*Ello i bims, de lara*/
+/*Fremdcode Ende*/
