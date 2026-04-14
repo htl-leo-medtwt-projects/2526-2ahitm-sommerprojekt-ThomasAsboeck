@@ -5,7 +5,7 @@ function enterLevelSelectFromMainMenu() {
 
                 <div id="level-1-container" class="level-container">
                     <div id="level-1-preview" class="level-preview-container"></div>
-                    <div id="level-1-button" class="level-button-container">Play</div>
+                    <div id="level-1-button" class="level-button-container" onclick="level1()">Play</div>
                 </div>
                 
                 <div id="level-2-container" class="level-container">
@@ -75,5 +75,12 @@ function enterMainMenu() {
                 Settings
             </div>
         </div>`
+    document.getElementById("screen").innerHTML = html;
+}
+
+function level1() {
+    let html = "";
+    html =  `<div id="world"></div>
+            <div id="player"></div>`;
     document.getElementById("screen").innerHTML = html;
 }

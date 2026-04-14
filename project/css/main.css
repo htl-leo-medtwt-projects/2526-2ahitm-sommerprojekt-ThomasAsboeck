@@ -96,6 +96,15 @@ body {
     cursor: pointer;
 }
 
+#player {
+    background-color: red;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    left: 304px;
+    bottom: 164px;
+}
+
 /*Fremdcode Start*/
 /*Ello i bims, de lara*/
 /*Fremdcode Ende*/
