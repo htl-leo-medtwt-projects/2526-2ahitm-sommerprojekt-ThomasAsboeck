@@ -12,7 +12,7 @@ function gameLoop(timestamp) {
     previousTime = newTime;
     
     movementCalculations();
-
+    gameLogic();
     
 
     requestAnimationFrame(gameLoop);

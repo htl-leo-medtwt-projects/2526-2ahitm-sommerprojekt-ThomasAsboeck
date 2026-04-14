@@ -83,4 +83,5 @@ function level1() {
     html =  `<div id="world"></div>
             <div id="player"></div>`;
     document.getElementById("screen").innerHTML = html;
+    gameLoop(-1);
 }
