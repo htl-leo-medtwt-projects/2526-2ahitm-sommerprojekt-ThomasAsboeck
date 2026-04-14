@@ -1,12 +1,17 @@
 let COORDINATES = {
-    playerX: 304,
-    playerY: 164
+    playerX: 0,
+    playerY: 0
 }
 
 function gameLogic() {
-    COORDINATES.playerX += velocityX;
-    COORDINATES.playerY += velocityY;
+    if (COORDINATES.playerX - velocityX < 0 && COORDINATES.playerX - velocityX > -3840-640) {
+        COORDINATES.playerX -= velocityX;
+    }
+    if (COORDINATES.playerY - velocityY < 0 && COORDINATES.playerY - velocityY > -2160-360) {
+        COORDINATES.playerY -= velocityY;
+    }
 
-    document.getElementById("player").style.left = COORDINATES.playerX + "px";
-    document.getElementById("player").style.bottom = COORDINATES.playerY + "px";
+
+    document.getElementById("world").style.left = COORDINATES.playerX + "px";
+    document.getElementById("world").style.bottom = COORDINATES.playerY + "px";
 }
