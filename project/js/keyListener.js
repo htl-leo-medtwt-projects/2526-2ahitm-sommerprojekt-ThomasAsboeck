@@ -8,12 +8,15 @@ let KEY_EVENTS = {
     shift: false,
     space: false,
     lmb: false,
-    rmb: false
+    rmb: false,
+    mouseX: 0,
+    mouseY: 0
 }
 document.onkeydown = keyListenerDown;
 document.onkeyup = keyListenerUp;
 document.onmousedown = mouseListenerDown;
 document.onmouseup = mouseListenerUp;
+document.onmousemove = mouseCoordinates;
 
 
 function keyListenerDown(e) {
@@ -86,4 +89,11 @@ function mouseListenerUp(e) {
     if (e.button == 2) {
         KEY_EVENTS.rmb = false;
     }
+}
+
+function mouseCoordinates(e) {
+    const rect = document.getElementById("screen").getBoundingClientRect();
+    let scale = rect.width / 640;
+    KEY_EVENTS.mouseX = (e.clientX - rect.left) / scale;
+    KEY_EVENTS.mouseY = (e.clientY - rect.top) / scale;
 }

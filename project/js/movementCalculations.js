@@ -1,33 +1,56 @@
 const acceleration = 0.1;
-const maxSpeed = 32/5;
+const maxSpeed = 32 / 5;
 const friction = 0.9;
 let wishY;
 let wishX;
 let velocityY = 0;
 let velocityX = 0;
+let forwardX = 0;
+let forwardY = 0;
+let forwardLength = 0;
+let rightX = 0;
+let rightY = 0;
+let playerX = 320;
+let playerY = 180;
+
 
 function movementCalculations() {
-    if (KEY_EVENTS.w && !KEY_EVENTS.s) {
-        wishY = 1;
-    }
-    if (!KEY_EVENTS.w && KEY_EVENTS.s) {
-        wishY = -1;
-    }
-    if (!KEY_EVENTS.w && !KEY_EVENTS.s || KEY_EVENTS.w && KEY_EVENTS.s) {
-        wishY = 0;
-    }
-    if (KEY_EVENTS.a && !KEY_EVENTS.d) {
-        wishX = -1;
-    }
-    if (!KEY_EVENTS.a && KEY_EVENTS.d) {
-        wishX = 1;
-    }
-    if (!KEY_EVENTS.a && !KEY_EVENTS.d || KEY_EVENTS.a && KEY_EVENTS.d) {
-        wishX = 0;
+
+    forwardX = KEY_EVENTS.mouseX - playerX;
+    forwardY = KEY_EVENTS.mouseY - playerY;
+
+    if (forwardX != 0 && forwardY != 0) {
+        let forwardLength = Math.sqrt(Math.pow(forwardX, 2) + Math.pow(forwardY, 2));
+        forwardX = forwardX / forwardLength;
+        forwardY = forwardY / forwardLength;
     }
 
-    if (wishX != 0 && wishY != 0) {
-        let wishLength = Math.sqrt(Math.pow(wishX, 2) + Math.pow(wishY, 2));
+    rightX = forwardY;
+    rightY = -forwardX;
+
+    wishY = 0;
+    wishX = 0;
+
+    if (KEY_EVENTS.w && !KEY_EVENTS.s) {
+        wishX += forwardX;
+        wishY -= forwardY;
+    }
+    if (!KEY_EVENTS.w && KEY_EVENTS.s) {
+        wishX -= forwardX;
+        wishY += forwardY;
+    }
+    if (KEY_EVENTS.a && !KEY_EVENTS.d) {
+        wishX -= rightX;
+        wishY += rightY;
+    }
+    if (!KEY_EVENTS.a && KEY_EVENTS.d) {
+        wishX += rightX;
+        wishY -= rightY;
+    }
+
+
+    let wishLength = Math.sqrt(Math.pow(wishX, 2) + Math.pow(wishY, 2));
+    if (wishLength < 0) {
         wishX = wishX / wishLength;
         wishY = wishY / wishLength;
     }
@@ -54,5 +77,6 @@ function movementCalculations() {
             velocityY = 0;
         }
     }
+
     console.log(velocityX + "   " + velocityY);
 }
