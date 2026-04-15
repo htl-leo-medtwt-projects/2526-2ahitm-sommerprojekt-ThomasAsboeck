@@ -14,4 +14,11 @@ function gameLogic() {
 
     document.getElementById("world").style.left = COORDINATES.playerX + "px";
     document.getElementById("world").style.bottom = COORDINATES.playerY + "px";
+
+    if(KEY_EVENTS.lmb) {
+        shoot();
+    }
+
+    let fps = 1/(deltaTime/1000);
+    document.getElementById("fpsCounter").innerHTML = Math.floor(fps) + "FPS";
 }

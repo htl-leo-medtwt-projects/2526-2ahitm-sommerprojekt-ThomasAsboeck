@@ -78,5 +78,5 @@ function movementCalculations() {
         }
     }
 
-    console.log(velocityX + "   " + velocityY);
+    console.log(COORDINATES.playerX + "   " + COORDINATES.playerY);
 }

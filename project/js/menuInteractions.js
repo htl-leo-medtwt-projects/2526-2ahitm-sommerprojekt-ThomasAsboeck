@@ -83,5 +83,6 @@ function level1() {
     html =  `<div id="world"></div>
             <div id="player"></div>`;
     document.getElementById("screen").innerHTML = html;
+    document.body.innerHTML += `<div id="fpsCounter"></div>`;
     gameLoop(-1);
 }

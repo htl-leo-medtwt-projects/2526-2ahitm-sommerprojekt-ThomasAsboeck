@@ -117,6 +117,23 @@ body {
     bottom: 164px;
 }
 
+.bullet {
+    position: absolute;
+    background-color: yellow;
+    width: 16px;
+    height: 16px;
+}
+
+#fpsCounter {
+    transform-origin: top right;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 3rem;
+}
+
 /*Fremdcode Start*/
 /*Ello i bims, de lara*/
 /*Fremdcode Ende*/

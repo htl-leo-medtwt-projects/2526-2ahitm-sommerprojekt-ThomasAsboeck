@@ -13,7 +13,7 @@ function gameLoop(timestamp) {
     
     movementCalculations();
     gameLogic();
-    
+    highQualityBulletMath();
 
     requestAnimationFrame(gameLoop);
 }
