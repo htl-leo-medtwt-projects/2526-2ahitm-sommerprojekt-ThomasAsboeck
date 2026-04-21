@@ -120,8 +120,8 @@ body {
 .bullet {
     position: absolute;
     background-color: yellow;
-    width: 16px;
-    height: 16px;
+    width: 3px;
+    height: 3px;
 }
 
 #fpsCounter {

@@ -1,9 +1,13 @@
-const bulletSpeed = 0.5;
+const bulletSpeed = 2.5;
+let bulletCooldown = 250;
+let lastBulletShot = -1;
 
 let bullets = [];
 let counter = 0;
 
 function shoot() {
+
+
     let element = document.createElement("div");
     element.className = "bullet"
     element.id = "bullet" + counter
