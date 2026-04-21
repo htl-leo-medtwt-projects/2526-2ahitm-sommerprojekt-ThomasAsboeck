@@ -16,7 +16,7 @@ function gameLogic() {
     document.getElementById("world").style.bottom = COORDINATES.playerY + "px";
 
     if(KEY_EVENTS.lmb) {
-        shoot();
+        shoot(2.5, 500, 0.2);
     }
 
     let fps = 1/(deltaTime/1000);

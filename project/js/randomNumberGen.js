@@ -1,0 +1,1 @@
+let rng = new Math.seedrandom();

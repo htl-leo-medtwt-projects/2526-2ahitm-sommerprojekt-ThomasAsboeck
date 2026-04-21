@@ -77,6 +77,4 @@ function movementCalculations() {
             velocityY = 0;
         }
     }
-
-    console.log(COORDINATES.playerX + "   " + COORDINATES.playerY);
 }
