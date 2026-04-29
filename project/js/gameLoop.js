@@ -11,9 +11,11 @@ function gameLoop(timestamp) {
     }
     previousTime = newTime;
     
+    EnemyLogic();
     movementCalculations();
     gameLogic();
     highQualityBulletMath();
+    
 
     requestAnimationFrame(gameLoop);
 }

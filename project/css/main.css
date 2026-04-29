@@ -134,6 +134,15 @@ body {
     font-size: 3rem;
 }
 
+.enemy {
+    background-color: rgb(255, 0, 251);
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
 /*Fremdcode Start*/
 /*Ello i bims, de lara*/
 /*Fremdcode Ende*/
