@@ -3,6 +3,8 @@ let COORDINATES = {
     playerY: 0
 }
 
+let currentWeapon = 2;
+
 function gameLogic() {
     if (COORDINATES.playerX - velocityX < 0 && COORDINATES.playerX - velocityX > -3840 + 640) {
         COORDINATES.playerX -= velocityX;
@@ -17,9 +19,7 @@ function gameLogic() {
 
 
     if (KEY_EVENTS.lmb) {
-        //shoot(2.5, 500, 0.2);
-        //shoot(5, 120, 0.05);
-        shoot(3, 1200, 0.05, 25)
+        shoot(weapons[currentWeapon].speed, weapons[currentWeapon].bpm, weapons[currentWeapon].spread, weapons[currentWeapon].damage, weapons[currentWeapon].penetration)
     }
 
     if (bulletsInWorld > 0 && enemysInWorld > 0) {
