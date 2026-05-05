@@ -80,10 +80,9 @@ function enterMainMenu() {
 
 function level1() {
     let html = "";
-    html =  `<div id="world"></div>
+    html = `<div id="world"></div>
             <div id="player"></div>`;
     document.getElementById("screen").innerHTML = html;
     document.body.innerHTML += `<div id="fpsCounter"></div>`;
-    addEnemy();
     gameLoop(-1);
 }

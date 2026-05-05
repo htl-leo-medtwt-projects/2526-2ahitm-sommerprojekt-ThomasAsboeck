@@ -2,6 +2,7 @@ let bulletCooldown = 0;
 
 let bullets = [];
 let counter = 0;
+let bulletsInWorld = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
     if (bulletCooldown < 0) {
@@ -32,11 +33,13 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration) {
             damage: damage,
             penetration: penetration,
             size: 1,
-            element: element
+            element: element,
+            previousPositionX: 320 + (COORDINATES.playerX * -1),
+            previousPositionY: 180 + (COORDINATES.playerY * -1),
         }
         bullets.push(bullet);
         document.getElementById("world").appendChild(element);
-        console.log(angle);
+        bulletsInWorld++;
         counter++;
         bulletCooldown = 60000 / bpm;
     }
@@ -47,26 +50,33 @@ function highQualityBulletMath() {
     bulletCooldown = bulletCooldown - deltaTime;
     for (let i = 0; i < bullets.length; i++) {
         if (bullets[i] != null) {
+            bullets[i].previousPositionY = bullets[i].bulletY;
+            bullets[i].previousPositionX = bullets[i].bulletX;
             bullets[i].bulletX += bullets[i].velocityX * deltaTime;
             bullets[i].bulletY -= bullets[i].velocityY * deltaTime;
             bullets[i].element.style.left = bullets[i].bulletX + "px";
             bullets[i].element.style.bottom = bullets[i].bulletY + "px";
         }
     }
+
     checkBulletCollisions();
 }
 
 function checkBulletCollisions() {
     for (let i = 0; i < bullets.length; i++) {
-        if (bullets[i] == null || bullets[i].bulletX < 0 || bullets[i].bulletX > 3840 || bullets[i].bulletY < 0 || bullets[i].bulletY > 2160) {
-            killBullet(i);
+        if (bullets[i] != null) {
+            if (bullets[i].bulletX < 0 || bullets[i].bulletX > 3840 || bullets[i].bulletY < 0 || bullets[i].bulletY > 2160) {
+                killBullet(i);
+            }
         }
+
     }
 }
 
 function killBullet(i) {
     if (document.getElementById(`bullet${i}`)) {
+        bullets[i] = null;
         document.getElementById(`bullet${i}`).remove();
+        bulletsInWorld--;
     }
-    bullets[i] = null;
 }
