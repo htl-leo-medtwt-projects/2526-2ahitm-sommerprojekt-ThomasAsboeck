@@ -15,9 +15,6 @@ body {
     image-rendering: pixelated;
     background-color: black;
     font-family: Jacquard12;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #screen {
@@ -120,8 +117,8 @@ body {
 .bullet {
     position: absolute;
     background-color: yellow;
-    width: 3px;
-    height: 3px;
+    width: 2px;
+    height: 2px;
 }
 
 #fpsCounter {
@@ -136,8 +133,6 @@ body {
 
 .enemy {
     background-color: rgb(255, 0, 251);
-    height: 32px;
-    width: 32px;
     position: absolute;
 }
 

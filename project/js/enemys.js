@@ -11,7 +11,11 @@ function addEnemy() {
         hp: 100,
         enemyX: Math.floor(rng()* (3200)) + 304,
         enemyY: Math.floor(rng()* (1800)) + 164,
-        radius: 16,
+        enemyVelocityX: 0,
+        enemyVelocityY: 0,
+        enemyOldX: 0,
+        enemyOldY: 0,
+        size: 32,
         element: element
     }
 

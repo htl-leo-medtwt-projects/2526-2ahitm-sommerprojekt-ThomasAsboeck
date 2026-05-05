@@ -1,21 +1,48 @@
-let COORDINATES = {
+let player = {
     playerX: 0,
-    playerY: 0
+    playerY: 0,
+    hp: 100,
+    size: 32
 }
 
 let currentWeapon = 2;
 
 function gameLogic() {
-    if (COORDINATES.playerX - velocityX < 0 && COORDINATES.playerX - velocityX > -3840 + 640) {
-        COORDINATES.playerX -= velocityX;
+    if (enemysInWorld > 0) {
+        for (let i = 0; i < enemys.length; i++) {
+            if (enemys[i] != null) {
+                document.getElementById("enemy" + i).style.width = enemys[i].size + "px";
+                document.getElementById("enemy" + i).style.height = enemys[i].size + "px";
+            }
+        }
     }
-    if (COORDINATES.playerY - velocityY < 0 && COORDINATES.playerY - velocityY > -2160 + 360) {
-        COORDINATES.playerY -= velocityY;
+    if (bulletsInWorld > 0) {
+        for (let i = 0; i < bullets.length; i++) {
+            if (bullets[i] != null) {
+                document.getElementById("bullet" + i).style.width = bullets[i].size + "px";
+                document.getElementById("bullet" + i).style.height = bullets[i].size + "px";
+            }
+        }
+    }
+
+    if (enemysInWorld > 0) {
+        for (let i = 0; i < enemys.length; i++) {
+            if (enemys[i] != null) {
+                console.log(playerCollision(player, enemys[i]));
+            }
+        }
+    }
+
+    if (player.playerX - velocityX < 0 && player.playerX - velocityX > -3840 + 640) {
+        player.playerX -= velocityX;
+    }
+    if (player.playerY - velocityY < 0 && player.playerY - velocityY > -2160 + 360) {
+        player.playerY -= velocityY;
     }
 
 
-    document.getElementById("world").style.left = COORDINATES.playerX + "px";
-    document.getElementById("world").style.bottom = COORDINATES.playerY + "px";
+    document.getElementById("world").style.left = player.playerX + "px";
+    document.getElementById("world").style.bottom = player.playerY + "px";
 
 
     if (KEY_EVENTS.lmb) {

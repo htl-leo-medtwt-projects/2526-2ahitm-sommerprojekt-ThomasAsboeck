@@ -26,16 +26,16 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration) {
         let newForwardY = Math.sin(angle);
 
         let bullet = {
-            bulletX: 320 + (COORDINATES.playerX * -1),
-            bulletY: 180 + (COORDINATES.playerY * -1),
-            velocityX: newForwardX * bulletSpeed,
-            velocityY: newForwardY * bulletSpeed,
+            bulletX: 320 + (player.playerX * -1),
+            bulletY: 180 + (player.playerY * -1),
+            bulletVelocityX: newForwardX * bulletSpeed,
+            bulletVelocityY: newForwardY * bulletSpeed,
             damage: damage,
             penetration: penetration,
-            size: 1,
+            size: 2,
             element: element,
-            previousPositionX: 320 + (COORDINATES.playerX * -1),
-            previousPositionY: 180 + (COORDINATES.playerY * -1),
+            bulletOldX: 320 + (player.playerX * -1),
+            bulletOldY: 180 + (player.playerY * -1),
         }
         bullets.push(bullet);
         document.getElementById("world").appendChild(element);
@@ -50,10 +50,10 @@ function highQualityBulletMath() {
     bulletCooldown = bulletCooldown - deltaTime;
     for (let i = 0; i < bullets.length; i++) {
         if (bullets[i] != null) {
-            bullets[i].previousPositionY = bullets[i].bulletY;
-            bullets[i].previousPositionX = bullets[i].bulletX;
-            bullets[i].bulletX += bullets[i].velocityX * deltaTime;
-            bullets[i].bulletY -= bullets[i].velocityY * deltaTime;
+            bullets[i].bulletOldY = bullets[i].bulletY;
+            bullets[i].bulletOldX = bullets[i].bulletX;
+            bullets[i].bulletX += bullets[i].bulletVelocityX * deltaTime;
+            bullets[i].bulletY -= bullets[i].bulletVelocityY * deltaTime;
             bullets[i].element.style.left = bullets[i].bulletX + "px";
             bullets[i].element.style.bottom = bullets[i].bulletY + "px";
         }
