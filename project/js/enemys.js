@@ -50,6 +50,6 @@ function killEnemy(i) {
         enemys[i] = null;
         document.getElementById(`enemy${i}`).remove();
         enemysInWorld--;
+        player.coins += Math.ceil(rng()*3);
     }
-    
 }

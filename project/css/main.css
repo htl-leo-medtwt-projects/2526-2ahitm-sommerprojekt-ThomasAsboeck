@@ -131,6 +131,29 @@ body {
     font-size: 3rem;
 }
 
+#coinCounter {
+    transform-origin: top right;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 8px;
+    font-size: 5rem;
+}
+
+#timeRemaining {
+    transform-origin: top right;
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    margin-left: 8px;
+    font-size: 5rem;
+}
+
 .enemy {
     background-color: rgb(255, 0, 251);
     position: absolute;

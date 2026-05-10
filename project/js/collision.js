@@ -16,10 +16,3 @@ function bulletCollisionEnemy(enemy, bullet) {
     let distanceBulletToEnemy = Math.sqrt((closestX - enemyX) * (closestX - enemyX) + (closestY - enemyY) * (closestY - enemyY));
     return (distanceBulletToEnemy < enemy.size/2);
 };
-
-function playerCollision(player, enemy) {
-    let enemyX = enemy.enemyX + enemy.size/2;
-    let enemyY = enemy.enemyY + enemy.size/2;
-    let distancePlayerToEnemy = Math.sqrt((-1*player.playerX - enemyX) * (-1*player.playerX - enemyX) + (-1*player.playerY - enemyY) * (-1*player.playerY - enemyY));
-    return (distancePlayerToEnemy < enemy.size/2);
-}
