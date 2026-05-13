@@ -111,7 +111,7 @@ body {
     height: 2160px;
     position: absolute;
     left: 304px;
-    bottom: 164px;
+    bottom: 164px;   
 }
 
 .bullet {
@@ -157,6 +157,20 @@ body {
 .enemy {
     background-color: rgb(255, 0, 251);
     position: absolute;
+}
+
+#shopContainer {
+    height: 270px;
+    width: 480px;
+    z-index: 1000;
+    position: absolute;
+    top: 45px;
+    left: 80px;
+    background-color: wheat;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 /*Fremdcode Start*/
