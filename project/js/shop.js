@@ -6,11 +6,9 @@ let weaponPrice2;
 function createShop() {
     weaponNumber1 = Math.floor(rng() * 4);
     weaponNumber2 = Math.floor(rng() * 4);
-    console.log(player.currentWeapon + "   " + weaponNumber1 + "   " + weaponNumber2);
     while (weaponNumber2 == weaponNumber1 || weaponNumber1 == player.currentWeapon || weaponNumber2 == player.currentWeapon) {
         weaponNumber1 = Math.floor(rng() * 4);
         weaponNumber2 = Math.floor(rng() * 4);
-        console.log(player.currentWeapon + "   " + weaponNumber1 + "   " + weaponNumber2);
     }
 
     weaponPrice1 = weaponPrice(weaponNumber1);
@@ -21,7 +19,7 @@ function createShop() {
     <div id="shop">
     <div id="shopContainer">
     <div class="shopWeapon" id="shopWeapon1" onclick="switchWeapon(${weaponNumber1}, ${weaponPrice1}, 1, 2)"></div>
-    <div class="shopWeapon" id="shopWeapon2" onclick="switchWeapon(${weaponNumber2}, ${weaponPrice1}, 2, 1)"></div>
+    <div class="shopWeapon" id="shopWeapon2" onclick="switchWeapon(${weaponNumber2}, ${weaponPrice2}, 2, 1)"></div>
     </div>
     <div id="shopContinue" onclick="continueShop()">Continue</div>
     </div>`
@@ -30,6 +28,7 @@ function createShop() {
 
     document.getElementById("shopWeapon1").innerHTML = weaponName(weaponNumber1) + "<br>" + weaponPrice1;
     document.getElementById("shopWeapon2").innerHTML = weaponName(weaponNumber2) + "<br>" + weaponPrice2;
+
 }
 
 function switchWeapon(number, price, id, noID) {

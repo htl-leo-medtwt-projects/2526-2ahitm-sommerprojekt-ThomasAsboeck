@@ -3,7 +3,7 @@ let player = {
     playerY: 0,
     hp: 100,
     size: 32,
-    coins: 99999,
+    coins: 30,
     timeRemaining: 61000,
     isPaused: false,
     currentWeapon: 0
@@ -64,7 +64,6 @@ function gameLogic() {
         if (player.timeRemaining/1000 < 1) {
             player.isPaused = true;
             createShop();
-            console.log("AAAAAAA");
         }
 
         
