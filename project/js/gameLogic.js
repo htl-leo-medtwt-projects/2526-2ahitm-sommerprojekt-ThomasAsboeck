@@ -3,12 +3,12 @@ let player = {
     playerY: 0,
     hp: 100,
     size: 32,
-    coins: 0,
-    timeRemaining: 60000,
-    isPaused: false
+    coins: 99999,
+    timeRemaining: 61000,
+    isPaused: false,
+    currentWeapon: 0
 }
 
-let currentWeapon = 3;
 
 function gameLogic() {
     if (!player.isPaused) {
@@ -42,7 +42,7 @@ function gameLogic() {
 
 
         if (KEY_EVENTS.lmb) {
-            shoot(weapons[currentWeapon].speed, weapons[currentWeapon].bpm, weapons[currentWeapon].spread, weapons[currentWeapon].damage, weapons[currentWeapon].penetration)
+            shoot(weapons[player.currentWeapon].speed, weapons[player.currentWeapon].bpm, weapons[player.currentWeapon].spread, weapons[player.currentWeapon].damage, weapons[player.currentWeapon].penetration)
         }
 
         if (bulletsInWorld > 0 && enemysInWorld > 0) {
@@ -61,19 +61,19 @@ function gameLogic() {
 
         player.timeRemaining = player.timeRemaining - deltaTime;
 
-        if (player.timeRemaining/1000 < 55) {
+        if (player.timeRemaining/1000 < 1) {
             player.isPaused = true;
             createShop();
             console.log("AAAAAAA");
         }
 
-        document.getElementById("coinCounter").innerHTML = player.coins;
+        
         document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000);
     }
     
 
 
-
+    document.getElementById("coinCounter").innerHTML = player.coins;
     let fps = 1 / (deltaTime / 1000);
     document.getElementById("fpsCounter").innerHTML = Math.floor(fps) + "FPS";
 }

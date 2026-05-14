@@ -22,7 +22,7 @@ let weapons = [
     },
     sniper = {
         speed: 5,
-        bpm: 30,
+        bpm: 60,
         spread: 0.01,
         damage: 100,
         penetration: 3
