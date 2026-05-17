@@ -5,6 +5,8 @@ let counter = 0;
 let bulletsInWorld = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
+    spread = spread * (1/multipliers.accuracy);
+    bpm = bpm * multipliers.bpm;
     if (bulletCooldown < 0) {
 
         bulletSpeed = bulletSpeed + (rng() - 0.5);

@@ -1,17 +1,30 @@
 let player = {
     playerX: 0,
     playerY: 0,
+    originalHP: 100,
+    MaxHp: 100,
     hp: 100,
     size: 32,
-    coins: 0,
+    coins: 30,
     timeRemaining: 61000,
     isPaused: false,
     currentWeapon: 0
 }
 
+let multipliers = {
+    coins: 1,
+    speed: 1,
+    damage: 1,
+    hp: 1,
+    regen: 1,
+    accuracy: 1,
+    bpm: 100
+}
+
 
 function gameLogic() {
     if (!player.isPaused) {
+        player.MaxHp = player.originalHP * multipliers.hp;
         if (enemysInWorld > 0) {
             for (let i = 0; i < enemys.length; i++) {
                 if (enemys[i] != null) {
@@ -29,11 +42,11 @@ function gameLogic() {
             }
         }
 
-        if (player.playerX - velocityX < 0 && player.playerX - velocityX > -3840 + 640) {
-            player.playerX -= velocityX;
+        if (player.playerX - velocityX * multipliers.speed < 0 && player.playerX - velocityX * multipliers.speed > -3840 + 640) {
+            player.playerX -= velocityX * multipliers.speed;
         }
-        if (player.playerY - velocityY < 0 && player.playerY - velocityY > -2160 + 360) {
-            player.playerY -= velocityY;
+        if (player.playerY - velocityY * multipliers.speed < 0 && player.playerY - velocityY * multipliers.speed > -2160 + 360) {
+            player.playerY -= velocityY * multipliers.speed;
         }
 
 
@@ -50,7 +63,7 @@ function gameLogic() {
                 for (let j = 0; j < bullets.length; j++) {
                     if (bullets[j] != null && enemys[i] != null) {
                         if (bulletCollisionEnemy(enemys[i], bullets[j])) {
-                            enemys[i].hp -= bullets[j].damage;
+                            enemys[i].hp -= bullets[j].damage * multipliers.damage;
                             console.log(" hit Enemy" + i + "   " + enemys[i].hp)
                             killBullet(j);
                         }
