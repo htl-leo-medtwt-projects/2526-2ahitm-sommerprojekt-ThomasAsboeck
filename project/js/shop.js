@@ -11,8 +11,8 @@ function createShop() {
         weaponNumber2 = Math.floor(rng() * 4);
     }
 
-    weaponPrice1 = weaponPrice(weaponNumber1);
-    weaponPrice2 = weaponPrice(weaponNumber2);
+    weaponPrice1 = Math.ceil(rng() * weapons[weaponNumber1].priceRange + weapons[weaponNumber1].priceRange);
+    weaponPrice2 = Math.ceil(rng() * weapons[weaponNumber2].priceRange + weapons[weaponNumber2].priceRange);
 
     let html = "";
     html += `
@@ -26,8 +26,8 @@ function createShop() {
     document.getElementById("screen").innerHTML += html;
     document.getElementById("world").style.filter = "brightness(0.5)";
 
-    document.getElementById("shopWeapon1").innerHTML = weaponName(weaponNumber1) + "<br>" + weaponPrice1;
-    document.getElementById("shopWeapon2").innerHTML = weaponName(weaponNumber2) + "<br>" + weaponPrice2;
+    document.getElementById("shopWeapon1").innerHTML = `<p>${weapons[weaponNumber1].name}</p><p>${weapons[weaponNumber1].description}</p><p>${weaponPrice1}</p>`;
+    document.getElementById("shopWeapon2").innerHTML = `<p>${weapons[weaponNumber2].name}</p><p>${weapons[weaponNumber2].description}</p><p>${weaponPrice2}</p>`;
 
 }
 
@@ -45,42 +45,4 @@ function continueShop() {
     document.getElementById("world").style.filter = "brightness(1)";
     player.isPaused = false;
     player.timeRemaining = 61000;
-}
-
-function weaponName(number) {
-    let result = "";
-    switch (number) {
-        case 0:
-            result = "Pistol";
-            break;
-        case 1:
-            result = "SMG";
-            break;
-        case 2:
-            result = "Assault Rifle";
-            break;
-        case 3:
-            result = "Sniper";
-            break;
-    }
-    return result;
-}
-
-function weaponPrice(number) {
-    let result;
-    switch (number) {
-        case 0:
-            result = Math.ceil(rng() * 5 + 5);
-            break;
-        case 1:
-            result = Math.ceil(rng() * 10 + 10);
-            break;
-        case 2:
-            result = Math.ceil(rng() * 15 + 15);
-            break;
-        case 3:
-            result = Math.ceil(rng() * 20 + 20);
-            break;
-    }
-    return result;
 }

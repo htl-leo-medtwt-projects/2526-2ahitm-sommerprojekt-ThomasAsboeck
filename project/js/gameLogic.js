@@ -3,7 +3,7 @@ let player = {
     playerY: 0,
     hp: 100,
     size: 32,
-    coins: 30,
+    coins: 0,
     timeRemaining: 61000,
     isPaused: false,
     currentWeapon: 0

@@ -8,20 +8,26 @@
     src: url(../font/DefNotComicSans.ttf);
 }
 
+@font-face {
+    font-family: Press_Start_2P;
+    src: url(../font/PressStart2P-Regular.ttf);
+}
+
 body {
     margin: 0;
     height: 360px;
     width: 640px;
     image-rendering: pixelated;
     background-color: black;
-    font-family: Jacquard12;
+    font-family: Press_Start_2P;
     user-select: none;
     overflow: hidden;
+    font-size: 8px;
 }
 
 #screen {
     transform-origin: top left;
-    transform: scale(4);
+    transform: scale(2);
     height: 360px;
     width: 640px;
     background-image: url(../img/images/mainMenuBackground.jpg);
@@ -36,10 +42,20 @@ body {
     width: 160px;
     height: 360px;
     margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 72px;
+}
+
+#main-menu-button-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .main-menu-button {
-    font-size: 24px;
+    font-size: 8px;
     display: flex;
     background-color: #FCA173;
     color: #383838;
@@ -55,13 +71,11 @@ body {
 }
 
 #title-main-menu {
-    font-size: 42px;
+    font-size: 16px;
     color: #C7C7C7;
     text-align: center;
     width: 100%;
-    height: fit-content;
-    padding-top: 13px;
-    margin-bottom: 21px;
+    padding-top: 16px;
 }
 
 #level-select-container {
@@ -90,7 +104,7 @@ body {
     justify-content: center;
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 16px;
     color: #383838;
 }
 
@@ -130,7 +144,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 3rem;
+    font-size: 1rem;
 }
 
 #coinCounter {
@@ -141,7 +155,7 @@ body {
     top: 0;
     left: 0;
     margin-left: 8px;
-    font-size: 5rem;
+    font-size: 1rem;
 }
 
 #timeRemaining {
@@ -153,7 +167,7 @@ body {
     top: 0;
     left: 0;
     margin-left: 8px;
-    font-size: 5rem;
+    font-size: 1rem;
 }
 
 .enemy {
@@ -191,6 +205,9 @@ body {
     text-align: center;
 }
 
+.shopWeapon {
+    width: 45%;
+}
 /*Fremdcode Start*/
 /*Ello i bims, de lara*/
 /*Fremdcode Ende*/
