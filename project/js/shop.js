@@ -45,4 +45,5 @@ function continueShop() {
     document.getElementById("world").style.filter = "brightness(1)";
     player.isPaused = false;
     player.timeRemaining = 61000;
+    player.difficulty = player.difficulty * 1.5;
 }

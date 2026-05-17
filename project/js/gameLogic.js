@@ -1,4 +1,5 @@
 let player = {
+    difficulty: 1,
     playerX: 0,
     playerY: 0,
     originalHP: 100,

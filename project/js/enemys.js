@@ -26,8 +26,7 @@ function addEnemy() {
 }
 
 function enemyLogic() {
-
-    if(enemysInWorld < 5) {
+    if(enemysInWorld < 5 * player.difficulty) {
         addEnemy();
     }
 
