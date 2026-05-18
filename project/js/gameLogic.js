@@ -19,29 +19,13 @@ let multipliers = {
     hp: 1,
     regen: 1,
     accuracy: 1,
-    bpm: 100
+    bpm: 1
 }
 
 
 function gameLogic() {
     if (!player.isPaused) {
         player.MaxHp = player.originalHP * multipliers.hp;
-        if (enemysInWorld > 0) {
-            for (let i = 0; i < enemys.length; i++) {
-                if (enemys[i] != null) {
-                    document.getElementById("enemy" + i).style.width = enemys[i].size + "px";
-                    document.getElementById("enemy" + i).style.height = enemys[i].size + "px";
-                }
-            }
-        }
-        if (bulletsInWorld > 0) {
-            for (let i = 0; i < bullets.length; i++) {
-                if (bullets[i] != null) {
-                    document.getElementById("bullet" + i).style.width = bullets[i].size + "px";
-                    document.getElementById("bullet" + i).style.height = bullets[i].size + "px";
-                }
-            }
-        }
 
         if (player.playerX - velocityX * multipliers.speed < 0 && player.playerX - velocityX * multipliers.speed > -3840 + 640) {
             player.playerX -= velocityX * multipliers.speed;

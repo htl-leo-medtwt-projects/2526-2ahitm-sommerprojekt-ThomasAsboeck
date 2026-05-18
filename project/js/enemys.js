@@ -25,6 +25,8 @@ function addEnemy() {
 
     enemys.push(enemy);
     document.getElementById("world").appendChild(element);
+    document.getElementById("enemy" + enemyCounter).style.width = enemys[enemyCounter].size + "px";
+    document.getElementById("enemy" + enemyCounter).style.height = enemys[enemyCounter].size + "px";
     enemyCounter++;
     enemysInWorld++;
 }
@@ -65,11 +67,12 @@ function enemyLogic() {
                 }
             }
             if (blockedX && blockedY) {
-                enemyCollisionLogic(enemys[i]);
+                //enemyCollisionLogic(enemys[i]);
             }
+            enemys[i].element.style.left = enemys[i].enemyX + "px";
+            enemys[i].element.style.bottom = enemys[i].enemyY + "px";
         }
-        enemys[i].element.style.left = enemys[i].enemyX + "px";
-        enemys[i].element.style.bottom = enemys[i].enemyY + "px";
+        
     }
 }
 

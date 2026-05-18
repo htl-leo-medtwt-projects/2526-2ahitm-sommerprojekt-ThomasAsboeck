@@ -41,6 +41,8 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration) {
         }
         bullets.push(bullet);
         document.getElementById("world").appendChild(element);
+        document.getElementById("bullet" + counter).style.width = bullets[counter].size + "px";
+        document.getElementById("bullet" + counter).style.height = bullets[counter].size + "px";
         bulletsInWorld++;
         counter++;
         bulletCooldown = 60000 / bpm;
