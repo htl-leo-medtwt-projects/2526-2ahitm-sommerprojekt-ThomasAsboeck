@@ -5,7 +5,11 @@ let counter = 0;
 let bulletsInWorld = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
-    spread = spread * (1/multipliers.accuracy);
+    bulletForwardX = KEY_EVENTS.mouseX - playerX;
+    bulletForwardY = KEY_EVENTS.mouseY - playerY;
+
+
+    spread = spread * (1 / multipliers.accuracy);
     bpm = bpm * multipliers.bpm;
     if (bulletCooldown < 0) {
 
@@ -15,7 +19,7 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration) {
         element.className = "bullet";
         element.id = "bullet" + counter;
 
-        let angle = Math.atan2(forwardY, forwardX);
+        let angle = Math.atan2(bulletForwardY, bulletForwardX);
 
 
         //KI

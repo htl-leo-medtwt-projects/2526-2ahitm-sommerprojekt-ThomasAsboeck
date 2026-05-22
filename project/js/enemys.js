@@ -32,47 +32,49 @@ function addEnemy() {
 }
 
 function enemyLogic() {
-    if (enemysInWorld < 5 * player.difficulty) {
-        addEnemy();
-    }
+    if (!player.isPaused) {
+        if (enemysInWorld < 5 * player.difficulty) {
+            addEnemy();
+        }
 
-    for (let i = 0; i < enemys.length; i++) {
-        if (enemys[i] != null && enemys[i].hp <= 0) {
-            killEnemy(i);
+        for (let i = 0; i < enemys.length; i++) {
+            if (enemys[i] != null && enemys[i].hp <= 0) {
+                killEnemy(i);
+            }
         }
-    }
-    for (let i = 0; i < enemys.length; i++) {
-        if (enemys[i] != null) {
-            let blockedX = false;
-            let blockedY = false;
-            enemys[i].enemyOldX = enemys[i].enemyX;
-            enemys[i].enemyOldY = enemys[i].enemyY;
-            enemyMovement(enemys[i]);
-            enemys[i].enemyX += enemys[i].enemySpeedX;
-            for (let j = 0; j < enemys.length; j++) {
-                if (enemys[j] != null && i != j) {
-                    if (EnemyCollisionEnemy(enemys[i], enemys[j])) {
-                        enemys[i].enemyX = enemys[i].enemyOldX;
-                        blockedX = true;
+        for (let i = 0; i < enemys.length; i++) {
+            if (enemys[i] != null) {
+                let blockedX = false;
+                let blockedY = false;
+                enemys[i].enemyOldX = enemys[i].enemyX;
+                enemys[i].enemyOldY = enemys[i].enemyY;
+                enemyMovement(enemys[i]);
+                enemys[i].enemyX += enemys[i].enemySpeedX;
+                for (let j = 0; j < enemys.length; j++) {
+                    if (enemys[j] != null && i != j) {
+                        if (EnemyCollisionEnemy(enemys[i], enemys[j])) {
+                            enemys[i].enemyX = enemys[i].enemyOldX;
+                            blockedX = true;
+                        }
                     }
                 }
-            }
-            enemys[i].enemyY += enemys[i].enemySpeedY;
-            for (let j = 0; j < enemys.length; j++) {
-                if (enemys[j] != null && i != j) {
-                    if (EnemyCollisionEnemy(enemys[i], enemys[j])) {
-                        enemys[i].enemyY = enemys[i].enemyOldY;
-                        blockedY = true;
+                enemys[i].enemyY += enemys[i].enemySpeedY;
+                for (let j = 0; j < enemys.length; j++) {
+                    if (enemys[j] != null && i != j) {
+                        if (EnemyCollisionEnemy(enemys[i], enemys[j])) {
+                            enemys[i].enemyY = enemys[i].enemyOldY;
+                            blockedY = true;
+                        }
                     }
                 }
+                if (blockedX && blockedY) {
+                    //enemyCollisionLogic(enemys[i]);
+                }
+                enemys[i].element.style.left = enemys[i].enemyX + "px";
+                enemys[i].element.style.bottom = enemys[i].enemyY + "px";
             }
-            if (blockedX && blockedY) {
-                //enemyCollisionLogic(enemys[i]);
-            }
-            enemys[i].element.style.left = enemys[i].enemyX + "px";
-            enemys[i].element.style.bottom = enemys[i].enemyY + "px";
+
         }
-        
     }
 }
 

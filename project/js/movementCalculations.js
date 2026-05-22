@@ -15,9 +15,10 @@ let playerY = 180;
 
 
 function movementCalculations() {
-
-    forwardX = KEY_EVENTS.mouseX - playerX;
-    forwardY = KEY_EVENTS.mouseY - playerY;
+    if (!KEY_EVENTS.shift) {
+        forwardX = KEY_EVENTS.mouseX - playerX;
+        forwardY = KEY_EVENTS.mouseY - playerY;
+    }
 
     if (forwardX != 0 && forwardY != 0) {
         let forwardLength = Math.sqrt(Math.pow(forwardX, 2) + Math.pow(forwardY, 2));

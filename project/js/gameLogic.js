@@ -59,7 +59,7 @@ function gameLogic() {
 
         player.timeRemaining = player.timeRemaining - deltaTime;
 
-        if (player.timeRemaining/1000 < 1) {
+        if (player.timeRemaining/1000 < 51) {
             player.isPaused = true;
             createShop();
         }
