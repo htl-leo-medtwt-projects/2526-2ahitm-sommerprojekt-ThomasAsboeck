@@ -10,13 +10,13 @@ let aimX = 0;
 let aimY = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
-
-    bulletForwardX = aimX - playerX;
-    bulletForwardY = aimY - playerY;
-
-    spread = spread * (1 / multipliers.accuracy);
-    bpm = bpm * multipliers.bpm;
     if (bulletCooldown < 0) {
+        console.log(KEY_EVENTS.mouseX, KEY_EVENTS.mouseY, aimX, aimY, playerX, playerY)
+        bulletForwardX = (aimX + player.playerX) - 320;
+        bulletForwardY = -(aimY + player.playerY) + 180;
+
+        spread = spread * (1 / multipliers.accuracy);
+        bpm = bpm * multipliers.bpm;
 
         bulletSpeed = bulletSpeed + (rng() - 0.5);
 

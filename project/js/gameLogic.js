@@ -62,8 +62,8 @@ function gameLogic() {
         }
         for (let i = 0; i < enemys.length; i++) {
             if (enemys[i] != null) {
-                let enemyScreenX = enemys[i].enemyX + player.playerX;
-                let enemyScreenY = enemys[i].enemyY + player.playerY;
+                let enemyScreenX = enemys[i].enemyX + player.playerX + enemys[i].size/2;
+                let enemyScreenY = 360 - (enemys[i].enemyY + player.playerY) - enemys[i].size/2
                 let dist = Math.sqrt((enemyScreenX - KEY_EVENTS.mouseX) * (enemyScreenX - KEY_EVENTS.mouseX) + (enemyScreenY - KEY_EVENTS.mouseY) * (enemyScreenY - KEY_EVENTS.mouseY));
                 if (enemys[i] == closestEnemy) {
                     closestDistance = dist;
@@ -73,17 +73,21 @@ function gameLogic() {
                     closestEnemy = enemys[i];
                     closestEnemyID = i;
                 }
+                console.log(player.playerX, player.playerY, closestEnemy.enemyX, closestEnemy.enemyY);
+            }
+            else if(i == closestEnemyID) {
+                closestDistance = 999999999;
             }
         }
-        console.log(closestDistance);
         if (closestEnemy != null) {
-            aimX = closestEnemy.enemyX
-            aimY = closestEnemy.enemyY
+            aimX = closestEnemy.enemyX + closestEnemy.size/2;
+            aimY = closestEnemy.enemyY + closestEnemy.size/2;
         }
         else {
             aimX = KEY_EVENTS.mouseX
             aimY = KEY_EVENTS.mouseY
         }
+        
 
         //player.timeRemaining = player.timeRemaining - deltaTime;
 
