@@ -53,7 +53,6 @@ function gameLogic() {
                     if (bullets[j] != null && enemys[i] != null) {
                         if (bulletCollisionEnemy(enemys[i], bullets[j])) {
                             enemys[i].hp -= bullets[j].damage * multipliers.damage;
-                            console.log(" hit Enemy" + i + "   " + enemys[i].hp)
                             killBullet(j);
                         }
                     }
@@ -73,7 +72,6 @@ function gameLogic() {
                     closestEnemy = enemys[i];
                     closestEnemyID = i;
                 }
-                console.log(player.playerX, player.playerY, closestEnemy.enemyX, closestEnemy.enemyY);
             }
             else if(i == closestEnemyID) {
                 closestDistance = 999999999;
@@ -89,7 +87,7 @@ function gameLogic() {
         }
         
 
-        //player.timeRemaining = player.timeRemaining - deltaTime;
+        player.timeRemaining = player.timeRemaining - deltaTime;
 
         if (player.timeRemaining / 1000 < 1) {
             player.isPaused = true;

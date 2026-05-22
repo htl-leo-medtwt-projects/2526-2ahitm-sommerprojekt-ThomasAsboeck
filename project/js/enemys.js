@@ -10,7 +10,7 @@ function addEnemy() {
 
     let enemy = {
         hp: 100,
-        damage: 0,
+        damage: 10,
         cooldown: 0,
         enemyX: Math.floor(rng() * (3200)) + 304,
         enemyY: Math.floor(rng() * (1800)) + 164,
@@ -76,7 +76,6 @@ function enemyLogic() {
                     player.hp = player.hp - enemys[i].damage;
                     player.timeSinceDamage = 0;
                     enemys[i].cooldown = 500;
-                    console.log("Enemy " + i + "hit player: " + player.hp);
                 }
 
                 enemys[i].cooldown = enemys[i].cooldown - deltaTime;
