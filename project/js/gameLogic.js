@@ -4,11 +4,15 @@ let player = {
     playerY: 0,
     originalHP: 100,
     MaxHp: 100,
+    timeSinceDamage: 0,
     hp: 100,
     size: 32,
     coins: 30,
     timeRemaining: 61000,
     isPaused: false,
+    score: 0,
+    timeSurvived: 0,
+    kills: 0,
     currentWeapon: 0
 }
 
@@ -56,18 +60,48 @@ function gameLogic() {
                 }
             }
         }
+        for (let i = 0; i < enemys.length; i++) {
+            if (enemys[i] != null) {
+                let enemyScreenX = enemys[i].enemyX + player.playerX;
+                let enemyScreenY = enemys[i].enemyY + player.playerY;
+                let dist = Math.sqrt((enemyScreenX - KEY_EVENTS.mouseX) * (enemyScreenX - KEY_EVENTS.mouseX) + (enemyScreenY - KEY_EVENTS.mouseY) * (enemyScreenY - KEY_EVENTS.mouseY));
+                if (enemys[i] == closestEnemy) {
+                    closestDistance = dist;
+                }
+                if (dist < closestDistance) {
+                    closestDistance = dist;
+                    closestEnemy = enemys[i];
+                    closestEnemyID = i;
+                }
+            }
+        }
+        console.log(closestDistance);
+        if (closestEnemy != null) {
+            aimX = closestEnemy.enemyX
+            aimY = closestEnemy.enemyY
+        }
+        else {
+            aimX = KEY_EVENTS.mouseX
+            aimY = KEY_EVENTS.mouseY
+        }
 
-        player.timeRemaining = player.timeRemaining - deltaTime;
+        //player.timeRemaining = player.timeRemaining - deltaTime;
 
-        if (player.timeRemaining/1000 < 51) {
+        if (player.timeRemaining / 1000 < 1) {
             player.isPaused = true;
             createShop();
         }
 
-        
+        player.timeSinceDamage += deltaTime;
+        player.timeSurvived += deltaTime;
+
+        if (player.hp <= 0) {
+            death();
+        }
+
         document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000);
     }
-    
+
 
 
     document.getElementById("coinCounter").innerHTML = player.coins;

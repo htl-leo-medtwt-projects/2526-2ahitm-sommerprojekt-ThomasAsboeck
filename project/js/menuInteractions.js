@@ -1,27 +1,3 @@
-function enterLevelSelectFromMainMenu() {
-    isOnSettingsPage = false;
-    let html = "";
-    html = `<div id="level-select-container">
-
-                <div id="level-1-container" class="level-container">
-                    <div id="level-1-preview" class="level-preview-container"></div>
-                    <div id="level-1-button" class="level-button-container" onclick="level1()">Play</div>
-                </div>
-                
-                <div id="level-2-container" class="level-container">
-                    <div id="level-2-preview" class="level-preview-container"></div>
-                    <div id="level-2-button" class="level-button-container"></div>
-                </div>
-
-                <div id="level-3-container" class="level-container">
-                    <div id="level-3-preview" class="level-preview-container"></div>
-                    <div id="level-3-button" class="level-button-container"></div>
-                </div>
-
-            </div>`;
-    document.getElementById("screen").innerHTML = html;
-}
-
 function enterSettingsFromMainMenu() {
     isOnSettingsPage = true;
     let html = "";
@@ -65,7 +41,7 @@ function enterMainMenu() {
             <div id="select-level-button-main-menu" class="main-menu-button" onclick="enterLevelSelectFromMainMenu()">
                 Select Level
             </div>
-            <div id="play-endless-button-main-menu" class="main-menu-button" onclick="enterEndlessFromMainMenu()">
+            <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
                 Play Endless
             </div>
             <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
@@ -78,13 +54,65 @@ function enterMainMenu() {
     document.getElementById("screen").innerHTML = html;
 }
 
-function level1() {
+function startGame() {
     let html = "";
     html = `<div id="world"></div>
             <div id="player"></div>`;
     document.getElementById("screen").innerHTML = html;
-    document.body.innerHTML += `<div id="coinCounter"></div>`;
-    document.body.innerHTML += `<div id="timeRemaining"></div>`;
-    document.body.innerHTML += `<div id="fpsCounter"></div>`;
+    let coinCounter = document.createElement("div");
+    coinCounter.id = "coinCounter";
+    document.body.appendChild(coinCounter);
+
+    let timeRemaining = document.createElement("div");
+    timeRemaining.id = "timeRemaining";
+    document.body.appendChild(timeRemaining);
+
+    let fpsCounter = document.createElement("div");
+    fpsCounter.id = "fpsCounter";
+    document.body.appendChild(fpsCounter);
+    player = {
+        difficulty: 1,
+        playerX: 0,
+        playerY: 0,
+        originalHP: 100,
+        MaxHp: 100,
+        timeSinceDamage: 0,
+        hp: 100,
+        size: 32,
+        coins: 30,
+        timeRemaining: 61000,
+        isPaused: false,
+        score: 0,
+        timeSurvived: 0,
+        kills: 0,
+        currentWeapon: 0
+    }
+    multipliers = {
+        coins: 1,
+        speed: 1,
+        damage: 1,
+        hp: 1,
+        regen: 1,
+        accuracy: 1,
+        bpm: 1
+    }
+
+    enemysInWorld = 0;
+    enemys = [];
+    enemyCounter = 0;
+
+    bulletCooldown = 0;
+
+    bullets = [];
+    counter = 0;
+    bulletsInWorld = 0;
+
+    closestDistance = 999999999;
+    closestEnemy = null;
+    closestEnemyID = null;
+    aimX = 0;
+    aimY = 0;
+
+    isPaused = false;
     gameLoop(-1);
 }

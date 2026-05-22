@@ -3,12 +3,15 @@ let enemys = [];
 let enemyCounter = 0;
 
 function addEnemy() {
+
     let element = document.createElement("div");
     element.className = "enemy";
     element.id = "enemy" + enemyCounter;
 
     let enemy = {
         hp: 100,
+        damage: 0,
+        cooldown: 0,
         enemyX: Math.floor(rng() * (3200)) + 304,
         enemyY: Math.floor(rng() * (1800)) + 164,
         enemyOldX: 0,
@@ -22,7 +25,6 @@ function addEnemy() {
         targetLength: 0,
         element: element
     }
-
     enemys.push(enemy);
     document.getElementById("world").appendChild(element);
     document.getElementById("enemy" + enemyCounter).style.width = enemys[enemyCounter].size + "px";
@@ -67,13 +69,21 @@ function enemyLogic() {
                         }
                     }
                 }
-                if (blockedX && blockedY) {
-                    //enemyCollisionLogic(enemys[i]);
-                }
                 enemys[i].element.style.left = enemys[i].enemyX + "px";
                 enemys[i].element.style.bottom = enemys[i].enemyY + "px";
-            }
+                enemys[i].element.style.filter = "drop-shadow(0 0 0 #000000)";
+                if (enemys[i].cooldown <= 0 && enemys[i].targetLength <= 3) {
+                    player.hp = player.hp - enemys[i].damage;
+                    player.timeSinceDamage = 0;
+                    enemys[i].cooldown = 500;
+                    console.log("Enemy " + i + "hit player: " + player.hp);
+                }
 
+                enemys[i].cooldown = enemys[i].cooldown - deltaTime;
+            }
+        }
+        if (closestEnemyID != null && document.getElementById("enemy" + closestEnemyID)) {
+            enemys[closestEnemyID].element.style.filter = "drop-shadow(0px 0px 10px #ff0000)";
         }
     }
 }
@@ -84,7 +94,10 @@ function killEnemy(i) {
         enemys[i] = null;
         document.getElementById(`enemy${i}`).remove();
         enemysInWorld--;
-        player.coins += multipliers.coins * Math.ceil(rng() * 3);
+        player.kills++;
+        addedPoints = multipliers.coins * Math.ceil(rng() * 3);
+        player.coins += addedPoints;
+        player.score += addedPoints;
     }
 }
 
@@ -120,37 +133,5 @@ function enemyMovement(enemy) {
     if (enemy.targetLength > 3) {
         enemy.enemySpeedX = enemy.enemyDirectionX * deltaTime * enemy.speed;
         enemy.enemySpeedY = enemy.enemyDirectionY * deltaTime * enemy.speed;
-    }
-}
-
-function enemyCollisionLogic(enemy) {
-    if (enemy.targetLength > 3) {
-        let playerX = player.playerX * -1 + 304;
-        let playerY = player.playerY * -1 + 164;
-
-        let targetX = playerX - enemy.enemyDirectionX * 32;
-        let targetY = playerY - enemy.enemyDirectionY * 32;
-
-        let leftX = -enemy.enemyDirectionY;
-        let leftY = enemy.enemyDirectionX;
-        let rightX = enemy.enemyDirectionY;
-        let rightY = -enemy.enemyDirectionX;
-
-        let leftPosX = enemy.enemyX + leftX;
-        let leftPosY = enemy.enemyY + leftY;
-        let rightPosX = enemy.enemyX + rightX;
-        let rightPosY = enemy.enemyY + rightY;
-
-        let leftDistance = Math.sqrt((leftPosX - targetX) * (leftPosX - targetX) + (leftPosY - targetY) * (leftPosY - targetY));
-        let rightDistance = Math.sqrt((rightPosX - targetX) * (rightPosX - targetX) + (rightPosY - targetY) * (rightPosY - targetY));
-
-        if (leftDistance < rightDistance) {
-            enemy.enemyX += leftX * enemy.speed * deltaTime * (enemy.speed / 2);
-            enemy.enemyY += leftY * enemy.speed * deltaTime * (enemy.speed / 2);
-        }
-        else {
-            enemy.enemyX += rightX * enemy.speed * deltaTime * (enemy.speed / 2);
-            enemy.enemyY += rightY * enemy.speed * deltaTime * (enemy.speed / 2);
-        }
     }
 }

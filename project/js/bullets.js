@@ -3,11 +3,16 @@ let bulletCooldown = 0;
 let bullets = [];
 let counter = 0;
 let bulletsInWorld = 0;
+let closestDistance = 999999999;
+let closestEnemy = null;
+let closestEnemyID = null;
+let aimX = 0;
+let aimY = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
-    bulletForwardX = KEY_EVENTS.mouseX - playerX;
-    bulletForwardY = KEY_EVENTS.mouseY - playerY;
 
+    bulletForwardX = aimX - playerX;
+    bulletForwardY = aimY - playerY;
 
     spread = spread * (1 / multipliers.accuracy);
     bpm = bpm * multipliers.bpm;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gers of Blud</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/menuInteractions.js" defer></script>
     <script src="js/keyListener.js" defer></script>
@@ -19,6 +19,7 @@
     <script src="js/collision.js" defer></script>
     <script src="js/shop.js" defer></script>
     <script src="js/upgrades.js" defer></script>
+    <script src="js/death.js" defer></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -36,7 +37,7 @@
                     onclick="enterLevelSelectFromMainMenu()">
                     Select Level
                 </div>
-                <div id="play-endless-button-main-menu" class="main-menu-button" onclick="enterEndlessFromMainMenu()">
+                <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
                     Play Endless
                 </div>
                 <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
