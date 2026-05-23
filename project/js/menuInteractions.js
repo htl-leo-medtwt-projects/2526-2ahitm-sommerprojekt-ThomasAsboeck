@@ -1,4 +1,4 @@
-function enterSettingsFromMainMenu() {
+/*function enterSettingsFromMainMenu() {
     isOnSettingsPage = true;
     let html = "";
     html = `<div id="settings-container">
@@ -52,7 +52,7 @@ function enterMainMenu() {
             </div>
         </div>`
     document.getElementById("screen").innerHTML = html;
-}
+}*/
 
 function startGame() {
     cancelAnimationFrame(myAnimationFrame);
