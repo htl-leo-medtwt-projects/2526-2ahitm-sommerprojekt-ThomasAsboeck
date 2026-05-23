@@ -11,7 +11,6 @@ let aimY = 0;
 
 function shoot(bulletSpeed, bpm, spread, damage, penetration) {
     if (bulletCooldown < 0) {
-        console.log(KEY_EVENTS.mouseX, KEY_EVENTS.mouseY, aimX, aimY, playerX, playerY)
         bulletForwardX = (aimX + player.playerX) - 320;
         bulletForwardY = -(aimY + player.playerY) + 180;
 

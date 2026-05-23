@@ -98,6 +98,7 @@ function gameLogic() {
         player.timeSurvived += deltaTime;
 
         if (player.hp <= 0) {
+            player.isPaused = true;
             death();
         }
 
@@ -109,4 +110,41 @@ function gameLogic() {
     document.getElementById("coinCounter").innerHTML = player.coins;
     let fps = 1 / (deltaTime / 1000);
     document.getElementById("fpsCounter").innerHTML = Math.floor(fps) + "FPS";
+}
+
+function saveRun() {
+    let name = document.getElementById("ign").value;
+    let scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    
+    let entry = {
+        name: name,
+        score: player.score,
+        kills: player.kills,
+        timeSurvived: Math.floor(player.timeSurvived / 1000)
+    }
+    
+    scoreboard.push(entry);
+    scoreboard.sort((a, b) => b.score - a.score);
+    localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
+
+    document.getElementById("ign").remove();
+    document.getElementById("submitIGN").remove();
+
+    document.getElementById("scoreboard").innerHTML = "";
+    for (let i = 0; i < scoreboard.length; i++) {
+        const entry = document.createElement("div");
+        entry.className = "scoreboardEntry";
+        entry.innerHTML = `
+            <div class="scoreboardName">${scoreboard[i].name}</div>
+            <div class="scoreboardScore">Score: ${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">Kills: ${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">Survived for: ${scoreboard[i].timeSurvived}s</div>`;
+        document.getElementById("scoreboard").appendChild(entry);
+    }
+}
+
+function clearScoreboard() {
+    let scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    scoreboard = [];
+    localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
 }

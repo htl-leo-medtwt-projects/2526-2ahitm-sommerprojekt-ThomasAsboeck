@@ -1,6 +1,7 @@
 function death() {
     isPaused = true;
     player.score = player.score * player.kills * (player.timeSurvived / 1000);
+    let scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
     let html = "";
     html = `<div id="deathScreen">
     <div id="deathContainer">
@@ -12,48 +13,26 @@ function death() {
         </div>
         <div id="restartButton" onclick="startGame()">Play Again</div>
     </div>
+    <div id="scoreboardContainer">
+        <div id="inputContainer">
+            <input type="text" id="ign" name="ign">
+            <div id="submitIGN" onclick="saveRun()">Save</div>
+        </div>
+        <div id="scoreboard">
+
+        </div>
+    </div>
     </div>`;
     document.getElementById("screen").innerHTML = html;
-    player = {
-        difficulty: 1,
-        playerX: 0,
-        playerY: 0,
-        originalHP: 100,
-        MaxHp: 100,
-        timeSinceDamage: 0,
-        hp: 100,
-        size: 32,
-        coins: 30,
-        timeRemaining: 61000,
-        isPaused: false,
-        score: 0,
-        timeSurvived: 0,
-        kills: 0,
-        currentWeapon: 0
+    document.getElementById("scoreboard").innerHTML = "";
+    for (let i = 0; i < scoreboard.length; i++) {
+        const entry = document.createElement("div");
+        entry.className = "scoreboardEntry";
+        entry.innerHTML = `
+            <div class="scoreboardName">${scoreboard[i].name}</div>
+            <div class="scoreboardScore">${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">${scoreboard[i].timeSurvived}</div>`;
+        document.getElementById("scoreboard").appendChild(entry);
     }
-    multipliers = {
-        coins: 1,
-        speed: 1,
-        damage: 1,
-        hp: 1,
-        regen: 1,
-        accuracy: 1,
-        bpm: 1
-    }
-
-    enemysInWorld = 0;
-    enemys = [];
-    enemyCounter = 0;
-
-    bulletCooldown = 0;
-
-    bullets = [];
-    counter = 0;
-    bulletsInWorld = 0;
-
-    closestDistance = 999999999;
-    closestEnemy = null;
-    closestEnemyID = null;
-    aimX = 0;
-    aimY = 0;
 }

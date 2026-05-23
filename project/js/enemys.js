@@ -3,7 +3,6 @@ let enemys = [];
 let enemyCounter = 0;
 
 function addEnemy() {
-
     let element = document.createElement("div");
     element.className = "enemy";
     element.id = "enemy" + enemyCounter;
@@ -26,7 +25,7 @@ function addEnemy() {
         element: element
     }
     enemys.push(enemy);
-    document.getElementById("world").appendChild(element);
+    document.getElementById("world")?.appendChild(element);
     document.getElementById("enemy" + enemyCounter).style.width = enemys[enemyCounter].size + "px";
     document.getElementById("enemy" + enemyCounter).style.height = enemys[enemyCounter].size + "px";
     enemyCounter++;

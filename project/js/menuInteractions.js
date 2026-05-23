@@ -55,9 +55,14 @@ function enterMainMenu() {
 }
 
 function startGame() {
+    cancelAnimationFrame(myAnimationFrame);
     let html = "";
     html = `<div id="world"></div>
             <div id="player"></div>`;
+
+    document.getElementById("coinCounter")?.remove();
+    document.getElementById("timeRemaining")?.remove();
+    document.getElementById("fpsCounter")?.remove();
     document.getElementById("screen").innerHTML = html;
     let coinCounter = document.createElement("div");
     coinCounter.id = "coinCounter";
@@ -112,6 +117,8 @@ function startGame() {
     closestEnemyID = null;
     aimX = 0;
     aimY = 0;
+
+    previousTime = -1;
 
     isPaused = false;
     gameLoop(-1);
