@@ -111,6 +111,8 @@ function gameLogic() {
                     if (bullets[j] != null && enemys[i] != null) {
                         if (bulletCollisionEnemy(enemys[i], bullets[j])) {
                             enemys[i].hp -= bullets[j].damage * multipliers.damage;
+                            hitSound.rate(0.8 + rng() * 0.4);
+                            hitSound.play();
                             killBullet(j);
                         }
                     }
@@ -120,6 +122,10 @@ function gameLogic() {
 
 
         if (player.timeRemaining / 1000 < 1) {
+            player.hp += 20*multipliers.regen;
+            if (player.hp >= player.MaxHp) {
+                player.hp = player.MaxHp;
+            }
             player.isPaused = true;
             createShop();
         }

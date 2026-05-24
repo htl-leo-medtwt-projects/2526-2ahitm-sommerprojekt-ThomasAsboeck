@@ -55,6 +55,7 @@ function enterMainMenu() {
 }*/
 
 function startGame() {
+    music.stop()
     cancelAnimationFrame(myAnimationFrame);
     let html = "";
     html = `<div id="world"></div>
@@ -123,5 +124,7 @@ function startGame() {
     isDying = false;
 
     isPaused = false;
+
+    music.play();
     gameLoop(-1);
 }

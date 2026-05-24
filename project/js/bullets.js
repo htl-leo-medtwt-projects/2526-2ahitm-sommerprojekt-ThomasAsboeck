@@ -15,6 +15,8 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration, isAuto) {
     if (bulletCooldown < 0) {
         if (isAuto) {
             isShooting = true;
+            shootSound.rate(0.8 + rng() * 0.4);
+            shootSound.play();
             bulletForwardX = (aimX + player.playerX) - 320;
             bulletForwardY = -(aimY + player.playerY) + 180;
 
@@ -59,8 +61,10 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration, isAuto) {
             counter++;
             bulletCooldown = 60000 / bpm;
         }
-        else if(!player.alreadyShot){
+        else if (!player.alreadyShot) {
             isShooting = true;
+            shootSound.rate(0.8 + rng() * 0.4)
+            shootSound.play()
             bulletForwardX = (aimX + player.playerX) - 320;
             bulletForwardY = -(aimY + player.playerY) + 180;
 

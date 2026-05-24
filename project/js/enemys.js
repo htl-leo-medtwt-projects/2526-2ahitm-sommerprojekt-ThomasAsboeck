@@ -78,6 +78,8 @@ function enemyLogic() {
                 enemys[i].element.style.bottom = enemys[i].enemyY + "px";
                 enemys[i].element.style.filter = "drop-shadow(0 0 0 #000000)";
                 if (enemys[i].cooldown <= 0 && enemys[i].targetLength <= 3) {
+                    attackSound.rate(0.8 + rng() * 0.4);
+                    attackSound.play();
                     enemys[i].status = 2;
                     player.hp = player.hp - enemys[i].damage;
                     player.timeSinceDamage = 0;
@@ -170,6 +172,8 @@ function enemyLogic() {
 
 function killEnemy(i) {
     if (document.getElementById(`enemy${i}`) && enemys[i].status != 3) {
+        deathSound.rate(0.8 + rng() * 0.4);
+        deathSound.play();
         player.kills++;
         addedPoints = multipliers.coins * Math.ceil(rng() * 3);
         player.coins += addedPoints;
