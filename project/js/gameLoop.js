@@ -3,6 +3,7 @@ let deltaTime;
 let stopTime = false;
 let myAnimationFrame;
 let toggleEscape = true;
+let startShop = true;
 
 function gameLoop(timestamp) {
     if (!stopTime) {
@@ -29,6 +30,11 @@ function gameLoop(timestamp) {
     else if (!KEY_EVENTS.escape) {
         toggleEscape = true;
     }
+    if (startShop) {
+        player.isPaused = true;
+        createShop();
+    }
+    
 
     myAnimationFrame = requestAnimationFrame(gameLoop);
 }

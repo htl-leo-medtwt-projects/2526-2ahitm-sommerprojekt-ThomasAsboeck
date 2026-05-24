@@ -1,6 +1,6 @@
 const shootSound = new Howl({
     src: ['./sfx/shoot.wav'],
-    volume: 0.5
+    volume: 0.25
 });
 
 const hitSound = new Howl({
@@ -25,6 +25,6 @@ const zombieIdleSound = new Howl({
 
 const music = new Howl({
     src: ['./music/music.mp3'],
-    volume: 0.5,
+    volume: 0.4,
     loop: true
 })

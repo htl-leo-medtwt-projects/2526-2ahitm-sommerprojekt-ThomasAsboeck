@@ -16,7 +16,13 @@ let upgradesBought = [
     upgrade = false
 ]
 
+let startShopCheck = true;
+
 function createShop() {
+    if(startShop) {
+        startShop = false;
+        startShopCheck = true;
+    }
     for (let i = 0; i < enemys.length; i++) {
         if (enemys[i] != null) {
             if (document.getElementById(`enemy${i}`)) {
@@ -114,5 +120,10 @@ function continueShop() {
     document.getElementById("world").style.filter = "brightness(1)";
     player.isPaused = false;
     player.timeRemaining = 61000;
-    player.difficulty = player.difficulty * 1.5;
+    if (!startShopCheck) {
+        player.difficulty = player.difficulty * 1.5;
+    }
+    else {
+        startShopCheck = false;
+    }
 }

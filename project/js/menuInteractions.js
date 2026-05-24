@@ -123,6 +123,8 @@ function startGame() {
 
     isDying = false;
 
+    startShop = true;
+
     isPaused = false;
 
     music.play();

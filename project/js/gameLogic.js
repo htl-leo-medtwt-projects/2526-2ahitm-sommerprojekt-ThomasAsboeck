@@ -120,16 +120,6 @@ function gameLogic() {
             }
         }
 
-
-        if (player.timeRemaining / 1000 < 1) {
-            player.hp += 20*multipliers.regen;
-            if (player.hp >= player.MaxHp) {
-                player.hp = player.MaxHp;
-            }
-            player.isPaused = true;
-            createShop();
-        }
-
         if (player.hp <= 0 && !isDying) {
             currentFrame = -1;
             isDying = true;
