@@ -26,7 +26,7 @@ function EnemyCollisionEnemy(enemy1, enemy2) {
 
     let distance = Math.sqrt((enemy1X - enemy2X) * (enemy1X - enemy2X) + (enemy1Y - enemy2Y) * (enemy1Y - enemy2Y));
 
-    let overlap = (enemy1.size / 2 + enemy2.size / 2) - distance;
+    let overlap = (enemy1.size / 4 + enemy2.size / 4) - distance;
 
     return (overlap > 0);
 }

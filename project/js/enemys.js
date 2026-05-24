@@ -22,6 +22,12 @@ function addEnemy() {
         enemySpeedX: 0,
         enemySpeedY: 0,
         targetLength: 0,
+        frameTimer: 0,
+        currentFrame: 0,
+        maxFrames: 0,
+        timePerFrame: 0,
+        status: 0,
+        angle: 0,
         element: element
     }
     enemys.push(enemy);
@@ -44,7 +50,7 @@ function enemyLogic() {
             }
         }
         for (let i = 0; i < enemys.length; i++) {
-            if (enemys[i] != null) {
+            if (enemys[i] != null && enemys[i].status != 3) {
                 let blockedX = false;
                 let blockedY = false;
                 enemys[i].enemyOldX = enemys[i].enemyX;
@@ -72,12 +78,87 @@ function enemyLogic() {
                 enemys[i].element.style.bottom = enemys[i].enemyY + "px";
                 enemys[i].element.style.filter = "drop-shadow(0 0 0 #000000)";
                 if (enemys[i].cooldown <= 0 && enemys[i].targetLength <= 3) {
+                    enemys[i].status = 2;
                     player.hp = player.hp - enemys[i].damage;
                     player.timeSinceDamage = 0;
                     enemys[i].cooldown = 500;
                 }
 
                 enemys[i].cooldown = enemys[i].cooldown - deltaTime;
+
+                if (enemys[i].status == 2) {
+                    enemys[i].angle = Math.atan2(enemys[i].enemyDirectionY, enemys[i].enemyDirectionX);
+                    enemys[i].timePerFrame = 500 / 8;
+                    enemys[i].maxFrames = 8;
+                }
+                else if (enemys[i].enemySpeedX == 0 && enemys[i].enemySpeedY == 0) {
+                    enemys[i].angle = Math.atan2(enemys[i].enemyDirectionY, enemys[i].enemyDirectionX);
+                    enemys[i].timePerFrame = 150;
+                    enemys[i].status = 0;
+                    enemys[i].maxFrames = 5;
+                }
+                else if (enemys[i].enemySpeedX != 0 || enemys[i].enemySpeedY != 0) {
+                    enemys[i].angle = Math.atan2(enemys[i].enemyDirectionY, enemys[i].enemyDirectionX);
+                    enemys[i].timePerFrame = 150;
+                    enemys[i].status = 1;
+                    enemys[i].maxFrames = 10;
+                }
+
+
+                if (enemys[i].frameTimer >= enemys[i].timePerFrame) {
+                    enemys[i].currentFrame++;
+                    if (enemys[i].currentFrame >= enemys[i].maxFrames) {
+                        enemys[i].currentFrame = 0;
+                    }
+                    enemys[i].element.style.backgroundImage = `url(./img/sprites/Zombie/${enemys[i].status}.png)`;
+                    enemys[i].element.style.backgroundSize = `${32 * enemys[i].maxFrames}px 128px`;
+                    enemys[i].element.style.backgroundPositionX = -(enemys[i].currentFrame * 32) + "px";
+                    enemys[i].frameTimer = 0;
+                    if (enemys[i].status == 2 && enemys[i].currentFrame >= enemys[i].maxFrames - 1) {
+                        enemys[i].status = -1;
+                    }
+                    if (enemys[i].angle > -Math.PI / 4 && enemys[i].angle <= Math.PI / 4) {
+                        enemys[i].element.style.backgroundPositionY = `-64px`;
+                    } else if (enemys[i].angle > Math.PI / 4 && enemys[i].angle <= 3 * Math.PI / 4) {
+                        enemys[i].element.style.backgroundPositionY = `-32px`;
+                    } else if (enemys[i].angle > -3 * Math.PI / 4 && enemys[i].angle <= -Math.PI / 4) {
+                        enemys[i].element.style.backgroundPositionY = `0px`;
+                    } else {
+                        enemys[i].element.style.backgroundPositionY = `-96px`;
+                    }
+                }
+                enemys[i].frameTimer += deltaTime;
+            }
+            else if (enemys[i] != null) {
+                if (enemys[i].frameTimer >= 150) {
+                    enemys[i].currentFrame++;
+                    if (enemys[i].currentFrame >= 7) {
+                        enemys[i] = null;
+                        document.getElementById(`enemy${i}`).remove();
+                        enemysInWorld--;
+                    }
+                    else {
+                        enemys[i].element.style.backgroundImage = `url(./img/sprites/Zombie/${enemys[i].status}.png)`;
+                        enemys[i].element.style.backgroundSize = `${32 * 7}px 128px`;
+                        enemys[i].element.style.backgroundPositionX = -(enemys[i].currentFrame * 32) + "px";
+                        enemys[i].frameTimer = 0;
+                        if (enemys[i].angle > -Math.PI / 4 && enemys[i].angle <= Math.PI / 4) {
+                            enemys[i].element.style.backgroundPositionY = `-64px`;
+                        } else if (enemys[i].angle > Math.PI / 4 && enemys[i].angle <= 3 * Math.PI / 4) {
+                            enemys[i].element.style.backgroundPositionY = `-32px`;
+                        } else if (enemys[i].angle > -3 * Math.PI / 4 && enemys[i].angle <= -Math.PI / 4) {
+                            enemys[i].element.style.backgroundPositionY = `0px`;
+                        } else {
+                            enemys[i].element.style.backgroundPositionY = `-96px`;
+                        }
+                    }
+
+                }
+                if (enemys[i] != null) {
+                    enemys[i].frameTimer += deltaTime;
+                }
+
+
             }
         }
         if (closestEnemyID != null && document.getElementById("enemy" + closestEnemyID)) {
@@ -88,14 +169,13 @@ function enemyLogic() {
 
 
 function killEnemy(i) {
-    if (document.getElementById(`enemy${i}`)) {
-        enemys[i] = null;
-        document.getElementById(`enemy${i}`).remove();
-        enemysInWorld--;
+    if (document.getElementById(`enemy${i}`) && enemys[i].status != 3) {
         player.kills++;
         addedPoints = multipliers.coins * Math.ceil(rng() * 3);
         player.coins += addedPoints;
         player.score += addedPoints;
+        enemys[i].currentFrame = -1;
+        enemys[i].status = 3;
     }
 }
 
@@ -116,8 +196,8 @@ function enemyMovement(enemy) {
         enemy.enemyDirectionY = enemy.enemyDirectionY / length;
     }
 
-    let targetX = playerX - enemy.enemyDirectionX * 32;
-    let targetY = playerY - enemy.enemyDirectionY * 32;
+    let targetX = playerX - enemy.enemyDirectionX * 16;
+    let targetY = playerY - enemy.enemyDirectionY * 16;
 
     enemy.enemyDirectionX = targetX - enemy.enemyX;
     enemy.enemyDirectionY = targetY - enemy.enemyY;

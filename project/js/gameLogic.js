@@ -60,7 +60,7 @@ function gameLogic() {
                 player.alreadyShot = false;
             }
             for (let i = 0; i < enemys.length; i++) {
-                if (enemys[i] != null) {
+                if (enemys[i] != null && enemys[i].status != 3) {
                     let enemyScreenX = enemys[i].enemyX + player.playerX + enemys[i].size / 2;
                     let enemyScreenY = 360 - (enemys[i].enemyY + player.playerY) - enemys[i].size / 2
                     let dist = Math.sqrt((enemyScreenX - KEY_EVENTS.mouseX) * (enemyScreenX - KEY_EVENTS.mouseX) + (enemyScreenY - KEY_EVENTS.mouseY) * (enemyScreenY - KEY_EVENTS.mouseY));
