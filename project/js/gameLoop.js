@@ -2,6 +2,7 @@ let previousTime = -1;
 let deltaTime;
 let stopTime = false;
 let myAnimationFrame;
+let toggleEscape = true;
 
 function gameLoop(timestamp) {
     if (!stopTime) {
@@ -21,10 +22,19 @@ function gameLoop(timestamp) {
         highQualityBulletMath();
     }
 
+    if (KEY_EVENTS.escape&&toggleEscape) {
+        toggleEscape = false;
+        pauseGame();
+    }
+    else if (!KEY_EVENTS.escape) {
+        toggleEscape = true;
+    }
+
     console.log(deltaTime);
     myAnimationFrame = requestAnimationFrame(gameLoop);
 }
 
 function pauseGame() {
+    previousTime = -1;
     stopTime = !stopTime;
 }

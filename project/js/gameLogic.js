@@ -13,7 +13,8 @@ let player = {
     score: 0,
     timeSurvived: 0,
     kills: 0,
-    currentWeapon: 0
+    currentWeapon: 0,
+    alreadyShot: false
 }
 
 let multipliers = {
@@ -44,7 +45,10 @@ function gameLogic() {
 
 
         if (KEY_EVENTS.lmb) {
-            shoot(weapons[player.currentWeapon].speed, weapons[player.currentWeapon].bpm, weapons[player.currentWeapon].spread, weapons[player.currentWeapon].damage, weapons[player.currentWeapon].penetration)
+            shoot(weapons[player.currentWeapon].speed, weapons[player.currentWeapon].bpm, weapons[player.currentWeapon].spread, weapons[player.currentWeapon].damage, weapons[player.currentWeapon].penetration, weapons[player.currentWeapon].isAuto)
+        }
+        else {
+            player.alreadyShot = false;
         }
 
         if (bulletsInWorld > 0 && enemysInWorld > 0) {

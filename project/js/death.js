@@ -30,9 +30,9 @@ function death() {
         entry.className = "scoreboardEntry";
         entry.innerHTML = `
             <div class="scoreboardName">${scoreboard[i].name}</div>
-            <div class="scoreboardScore">${Math.floor(scoreboard[i].score)}</div>
-            <div class="scoreboardKills">${scoreboard[i].kills}</div>
-            <div class="scoreboardTimeSurvived">${scoreboard[i].timeSurvived}</div>`;
+            <div class="scoreboardScore">Score: ${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">Kills: ${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">Survived for: ${scoreboard[i].timeSurvived}s</div>`;
         document.getElementById("scoreboard").appendChild(entry);
     }
 }

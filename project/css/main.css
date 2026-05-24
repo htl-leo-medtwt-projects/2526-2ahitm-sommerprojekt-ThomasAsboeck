@@ -134,6 +134,7 @@ body {
 .bullet {
     position: absolute;
     background-color: yellow;
+    box-shadow: 0 0 6px 2px #ffff00;
     width: 2px;
     height: 2px;
 }
@@ -241,6 +242,14 @@ body {
 }
 
 #select-level-button-main-menu {
+    filter: saturate(0.5);
+}
+
+#settings-button-main-menu {
+    filter: saturate(0.5);
+}
+
+#tutorial-button-main-menu {
     filter: saturate(0.5);
 }
 

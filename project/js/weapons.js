@@ -7,7 +7,8 @@ let weapons = [
         bpm: 200,
         spread: 0.03,
         damage: 20,
-        penetration: 1
+        penetration: 1,
+        isAuto: false
     },
     smg = {
         name: "H&K MP7",
@@ -17,7 +18,8 @@ let weapons = [
         bpm: 1000,
         spread: 0.075,
         damage: 20,
-        penetration: 1
+        penetration: 1,
+        isAuto: true
     },
     assaultRifle = {
         name: "AK 47",
@@ -27,7 +29,8 @@ let weapons = [
         bpm: 700,
         spread: 0.05,
         damage: 33,
-        penetration: 1
+        penetration: 1,
+        isAuto: true
     },
     sniper = {
         name: "Barret M90",
@@ -37,6 +40,7 @@ let weapons = [
         bpm: 60,
         spread: 0.01,
         damage: 100,
-        penetration: 3
+        penetration: 3,
+        isAuto: false
     }
 ];
