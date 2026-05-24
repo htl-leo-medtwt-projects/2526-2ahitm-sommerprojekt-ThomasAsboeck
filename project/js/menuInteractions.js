@@ -120,6 +120,8 @@ function startGame() {
 
     previousTime = -1;
 
+    isDying = false;
+
     isPaused = false;
     gameLoop(-1);
 }

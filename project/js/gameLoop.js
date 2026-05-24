@@ -30,7 +30,6 @@ function gameLoop(timestamp) {
         toggleEscape = true;
     }
 
-    console.log(deltaTime);
     myAnimationFrame = requestAnimationFrame(gameLoop);
 }
 
