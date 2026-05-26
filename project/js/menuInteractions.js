@@ -13,16 +13,9 @@
                     <input type="range" min="0" max="1" step="0.01" value="1" class="settings-slider" id="settings-music-slider">
                 </div>
 
-                <div id="settings-shaking-container" class="individuial-settings-container">
-                    <div id="settings-shaking-title" class="settings-title">Shaking</div>
-                    <div id="settings-shaking-toggle" class="settings-toggle"></div>
+                <div id="settings-resolution-container" class="individual-settings-container">
+                    <div id="settings-resolution-title" class="settings-title">Resolution</div>
                 </div>
-
-                <div id="settings-sand-container" class="individuial-settings-container">
-                    <div id="settings-sand-title" class="settings-title">Toggle of death</div>
-                    <div id="settings-sand-toggle" class="settings-toggle"></div>
-                </div>
-
             </div>`;
     document.getElementById("screen").innerHTML = html;
     updateSettings();
