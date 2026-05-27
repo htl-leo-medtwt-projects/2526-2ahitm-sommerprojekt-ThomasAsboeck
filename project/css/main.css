@@ -394,6 +394,13 @@ body {
     color: #C7C7C7;
 }
 
+#tilemapCanvas {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
 /*Fremdcode Start*/
 /*Ello i bims, de lara*/
 /*Fremdcode Ende*/

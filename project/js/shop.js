@@ -124,6 +124,7 @@ function continueShop() {
         player.difficulty = player.difficulty * 1.5;
     }
     else {
+        renderMap();
         startShopCheck = false;
     }
 }

@@ -87,7 +87,7 @@ function gameLogic() {
             }
 
 
-            player.timeRemaining = player.timeRemaining - deltaTime;
+            //player.timeRemaining = player.timeRemaining - deltaTime;
 
             if (player.timeRemaining / 1000 < 1) {
                 player.isPaused = true;

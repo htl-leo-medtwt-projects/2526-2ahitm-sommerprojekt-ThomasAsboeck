@@ -51,7 +51,10 @@ function startGame() {
     music.stop()
     cancelAnimationFrame(myAnimationFrame);
     let html = "";
-    html = `<div id="world"></div>
+    html = `
+            <div id="world">
+            <canvas id="tilemapCanvas" width="2048" height="2048"></canvas>
+            </div>
             <div id="player"></div>`;
 
     document.getElementById("coinCounter")?.remove();

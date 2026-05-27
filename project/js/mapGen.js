@@ -2,6 +2,8 @@ const MAP_WIDTH = 128;
 const MAP_HEIGHT = 128;
 const ROAD_WIDTH = 5;
 let map = [];
+let canvas;
+let ctx;
 
 function initMap() {
     for (let y = 0; y < MAP_HEIGHT; y++) {
@@ -16,16 +18,36 @@ function placeRoad(startX, startY, direction, length) {
     if (direction == "horizontal") {
         if (startX + length <= MAP_WIDTH && startY + ROAD_WIDTH <= MAP_HEIGHT) {
             if (length < 0) {
+                for (let i = 0; i < ROAD_WIDTH; i++) {
+                    for (let j = 0; j < ROAD_WIDTH; j++) {
+                        map[startY + j][startX + i + 1] = 3;
+                    }
+                }
                 for (let i = 0; i < length * -1; i++) {
                     for (let j = 0; j < ROAD_WIDTH; j++) {
-                        map[startY + j][startX - i] = 2;
+                        if (map[startY + j][startX - i] != 0) {
+                            map[startY + j][startX - i] = 3;
+                        }
+                        else {
+                            map[startY + j][startX - i] = 2;
+                        }
                     }
                 }
             }
             else {
+                for (let i = 0; i < ROAD_WIDTH; i++) {
+                    for (let j = 0; j < ROAD_WIDTH; j++) {
+                        map[startY + j][startX - i - 1] = 3;
+                    }
+                }
                 for (let i = 0; i < length; i++) {
                     for (let j = 0; j < ROAD_WIDTH; j++) {
-                        map[startY + j][startX + i] = 2;
+                        if (map[startY + j][startX + i] != 0) {
+                            map[startY + j][startX + i] = 3;
+                        }
+                        else {
+                            map[startY + j][startX + i] = 2;
+                        }
                     }
                 }
             }
@@ -35,16 +57,38 @@ function placeRoad(startX, startY, direction, length) {
     else if (direction == "vertical") {
         if (startY + length <= MAP_HEIGHT && startX + ROAD_WIDTH <= MAP_WIDTH) {
             if (length < 0) {
+                for (let i = 0; i < ROAD_WIDTH; i++) {
+                    for (let j = 0; j < ROAD_WIDTH; j++) {
+                        map[startY + i + 1][startX + j] = 3;
+                    }
+                }
                 for (let i = 0; i < length * -1; i++) {
                     for (let j = 0; j < ROAD_WIDTH; j++) {
-                        map[startY - i][startX + j] = 1;
+                        if (map[startY - i][startX + j] != 0) {
+                            map[startY - i][startX + j] = 3;
+                        }
+                        else {
+                            map[startY - i][startX + j] = 1;
+                        }
                     }
                 }
             }
             else {
+                for (let i = 0; i < ROAD_WIDTH; i++) {
+                    for (let j = 0; j < ROAD_WIDTH; j++) {
+                        if (startY - i - 1 >= 0) {
+                            map[startY - i - 1][startX + j] = 3;
+                        }
+                    }
+                }
                 for (let i = 0; i < length; i++) {
                     for (let j = 0; j < ROAD_WIDTH; j++) {
-                        map[startY + i][startX + j] = 1;
+                        if (map[startY + i][startX + j] != 0) {
+                            map[startY + i][startX + j] = 3;
+                        }
+                        else {
+                            map[startY + i][startX + j] = 1;
+                        }
                     }
                 }
             }
@@ -63,7 +107,7 @@ function canPlaceHorizontal(startX, startY, length) {
         for (let check = -ROAD_WIDTH * 2; check < ROAD_WIDTH * 2; check++) {
             let checkY = startY + check;
             if (checkY >= 0 && checkY < MAP_HEIGHT) {
-                if (map[checkY][checkX] == 2) return false;
+                if (map[checkY][checkX] != 0) return false;
             }
         }
     }
@@ -76,7 +120,7 @@ function canPlaceVertical(startX, startY, length) {
         for (let check = -ROAD_WIDTH * 2; check < ROAD_WIDTH * 2; check++) {
             let checkX = startX + check;
             if (checkX >= 0 && checkX < MAP_WIDTH) {
-                if (map[checkY][checkX] == 1) return false;
+                if (map[checkY][checkX] != 0) return false;
             }
         }
     }
@@ -85,12 +129,12 @@ function canPlaceVertical(startX, startY, length) {
 
 function generateBranchHorizontally(startX, startY, goLeft) {
     if (goLeft) {
-        let randomLength = Math.floor(rng() * startX);
+        let randomLength = Math.floor(rng() * (startX - 10) + 10);
         if (canPlaceHorizontal(startX - 1, startY, -randomLength)) {
             placeRoad(startX - 1, startY, "horizontal", -randomLength);
         }
     } else {
-        let randomLength = Math.floor(rng() * (MAP_WIDTH - startX));
+        let randomLength = Math.floor(rng() * (MAP_WIDTH - startX - 10) + 10);
         if (canPlaceHorizontal(startX + 1, startY, randomLength)) {
             placeRoad(startX + 1, startY, "horizontal", randomLength);
         }
@@ -99,12 +143,12 @@ function generateBranchHorizontally(startX, startY, goLeft) {
 
 function generateBranchVertically(startX, startY, goUp) {
     if (goUp) {
-        let randomLength = Math.floor(rng() * startY);
+        let randomLength = Math.floor(rng() * (startY - 10) + 10);
         if (canPlaceVertical(startX, startY - 1, -randomLength)) {
             placeRoad(startX, startY - 1, "vertical", -randomLength);
         }
     } else {
-        let randomLength = Math.floor(rng() * (MAP_HEIGHT - startY));
+        let randomLength = Math.floor(rng() * (MAP_HEIGHT - startY - 10) + 10);
         if (canPlaceVertical(startX, startY + 1, randomLength)) {
             placeRoad(startX, startY + 1, "vertical", randomLength);
         }
@@ -176,6 +220,30 @@ function debugMap() {
         output += "\n";
     }
     console.log(output);
+}
+
+function renderMap() {
+
+    canvas = document.getElementById("tilemapCanvas");
+    ctx = canvas.getContext("2d");
+
+    for (let y = 0; y < MAP_HEIGHT; y++) {
+        for (let x = 0; x < MAP_WIDTH; x++) {
+            if (map[y][x] == 1) {
+                ctx.fillStyle = "#555555";
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            }
+            else if (map[y][x] == 2) {
+                ctx.fillStyle = "#777777";
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            }
+            else if (map[y][x] == 3) {
+                ctx.fillStyle = "#2f2f2f";
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            }
+        }
+    }
+    console.log("rendered Map");
 }
 
 initMap();
