@@ -43,7 +43,7 @@ let weapons = [
         bpm: 60,
         spread: 0.01,
         damage: 100,
-        penetration: 3,
+        penetration: 5,
         bullets: 1,
         isAuto: false
     },
@@ -53,10 +53,10 @@ let weapons = [
         priceRange: 20,
         speed: 2,
         bpm: 90,
-        spread: 0.25,
-        damage: 15,
+        spread: 0.15,
+        damage: 20,
         penetration: 1,
-        bullets: 7,
+        bullets: 16,
         isAuto: false
     }
 ];

@@ -16,15 +16,13 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration, bulletCount, isAut
         for (let i = 0; i < bulletCount; i++) {
             if (isAuto) {
                 isShooting = true;
-                shootSound.rate(0.8 + rng() * 0.4);
-                shootSound.play();
                 bulletForwardX = (aimX + player.playerX) - 320;
                 bulletForwardY = -(aimY + player.playerY) + 180;
 
                 spread = spread * (1 / multipliers.accuracy);
                 bpm = bpm * multipliers.bpm;
 
-                bulletSpeed = bulletSpeed + (rng() - 0.5);
+                bulletSpeed = bulletSpeed + (rng()/2 - 0.25);
 
                 let element = document.createElement("div");
                 element.className = "bullet";
@@ -113,7 +111,12 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration, bulletCount, isAut
                 bulletCooldown = 60000 / bpm;
             }
         }
+        if (isAuto || !player.alreadyShot) {
+            shootSound.rate(0.8 + rng() * 0.4);
+            shootSound.play();
+        }
         player.alreadyShot = true;
+
     }
 }
 

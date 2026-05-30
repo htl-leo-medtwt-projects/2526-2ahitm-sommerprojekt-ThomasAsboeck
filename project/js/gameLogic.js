@@ -187,8 +187,8 @@ function gameLogic() {
 
 
 
-    document.getElementById("coinCounter").innerHTML = player.coins + " coins";
-    document.getElementById("hpCounter").innerHTML = `${player.hp}hp/${player.MaxHp}hp`;
+    document.getElementById("coinCounter").innerHTML = Math.floor(player.coins) + " coins";
+    document.getElementById("hpCounter").innerHTML = `${Math.floor(player.hp)}hp/${Math.floor(player.MaxHp)}hp`;
     fpsCounter++;
     fpsTimer += deltaTime;
     if (fpsTimer >= 500) {
