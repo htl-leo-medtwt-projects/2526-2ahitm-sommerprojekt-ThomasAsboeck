@@ -182,12 +182,12 @@ function gameLogic() {
             }
         }
         frameTimer += deltaTime;
-        document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000);
+        document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000) + "s remaining";
     }
 
 
 
-    document.getElementById("coinCounter").innerHTML = player.coins;
+    document.getElementById("coinCounter").innerHTML = player.coins + " coins";
     document.getElementById("hpCounter").innerHTML = `${player.hp}hp/${player.MaxHp}hp`;
     fpsCounter++;
     fpsTimer += deltaTime;

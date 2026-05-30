@@ -154,8 +154,10 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 1rem;
-    padding: 8px;
+    font-size: 2rem;
+    padding: 16px;
+    color: #C7C7C7;
+    text-shadow: 0px 5px 0px #000000;
 }
 
 #coinCounter {
@@ -166,8 +168,10 @@ body {
     top: 0;
     left: 0;
     margin-left: 8px;
-    font-size: 1rem;
-    padding: 8px;
+    font-size: 2rem;
+    padding: 16px;
+    color: #C7C7C7;
+    text-shadow: 0px 5px 0px #000000;
 }
 
 #hpCounter {
@@ -178,8 +182,10 @@ body {
     bottom: 0;
     left: 0;
     margin-left: 8px;
-    font-size: 1rem;
-    padding: 8px;
+    font-size: 2rem;
+    padding: 16px;
+    color: #C7C7C7;
+    text-shadow: 0px 5px 0px #000000;
 }
 
 #timeRemaining {
@@ -191,8 +197,10 @@ body {
     top: 0;
     left: 0;
     margin-left: 8px;
-    font-size: 1rem;
-    padding: 8px;
+    font-size: 2rem;
+    padding: 16px;
+    color: #C7C7C7;
+    text-shadow: 0px 5px 0px #000000;
 }
 
 .enemy {
@@ -200,7 +208,7 @@ body {
 }
 
 #shop {
-    height: 270px;
+    height: 240px;
     width: 480px;
     z-index: 1000;
     position: absolute;
