@@ -1,51 +1,129 @@
-/*function enterSettingsFromMainMenu() {
+let oldHTML = "";
+
+function enterSettingsFromMainMenu() {
     isOnSettingsPage = true;
     let html = "";
-    html = `<div id="settings-container">
-                
-                <div id="settings-volume-container" class="individuial-settings-container">
-                    <div id="settings-volume-title" class="settings-title">Volume</div>
-                    <input type="range" min="0" max="1" step="0.01" value="1" class="settings-slider" id="settings-volume-slider">
+    html = `<div id="settingsScreen">
+        <div id="settingsContainer">
+            <p id="settingsTitle">SETTINGS</p>
+            <div id="settingsContent">
+
+                <div class="settingsRow">
+                    <label class="settingsLabel">MASTER VOL</label>
+                    <input type="range" class="settingsSlider" id="masterVolume" min="0" max="100" value="${VARIABLES_MENU.masterVolume * 100}">
+                    <span class="settingsValue" id="masterVolumeValue">100</span>
                 </div>
 
-                <div id="settings-music-container" class="individuial-settings-container">
-                    <div id="settings-music-title" class="settings-title">Music</div>
-                    <input type="range" min="0" max="1" step="0.01" value="1" class="settings-slider" id="settings-music-slider">
+                <div class="settingsRow">
+                    <label class="settingsLabel">MUSIC VOL</label>
+                    <input type="range" class="settingsSlider" id="musicVolume" min="0" max="100" value="${VARIABLES_MENU.musicVolume * 100}">
+                    <span class="settingsValue" id="musicVolumeValue">100</span>
                 </div>
 
-                <div id="settings-resolution-container" class="individual-settings-container">
-                    <div id="settings-resolution-title" class="settings-title">Resolution</div>
+                <div class="settingsRow">
+                    <label class="settingsLabel">RESOLUTION</label>
+                    <select class="settingsSelect" id="resolutionSelect">
+                        <option value="1">360p</option>
+                        <option value="2">720p</option>
+                        <option value="3">1080p</option>
+                        <option value="4" selected>1440p</option>
+                        <option value="6">4K</option>
+                    </select>
                 </div>
-            </div>`;
+
+            </div>
+            <div id="settingsButtonRow">
+                <div class="settingsButton" id="settingsBack" onclick="enterMainMenu()">BACK</div>
+                <div class="settingsButton" id="settingsApply" onclick="applySettings()">APPLY</div>
+            </div>
+        </div>
+    </div>`;
     document.getElementById("screen").innerHTML = html;
     updateSettings();
 }
 
+function enterSettingsFromGame() {
+    music.stop();
+    oldHTML = document.getElementById("screen").innerHTML;
+    isOnSettingsPage = true;
+    let settingsScreen = document.createElement("div");
+    settingsScreen.id = "settingsScreen";
+    document.getElementById("screen").appendChild(settingsScreen);
+    let html = "";
+    html = `<div id="settingsContainer">
+            <p id="settingsTitle">SETTINGS</p>
+            <div id="settingsContent">
+
+                <div class="settingsRow">
+                    <label class="settingsLabel">MASTER VOL</label>
+                    <input type="range" class="settingsSlider" id="masterVolume" min="0" max="100" value="${VARIABLES_MENU.masterVolume * 100}">
+                    <span class="settingsValue" id="masterVolumeValue">100</span>
+                </div>
+
+                <div class="settingsRow">
+                    <label class="settingsLabel">MUSIC VOL</label>
+                    <input type="range" class="settingsSlider" id="musicVolume" min="0" max="100" value="${VARIABLES_MENU.musicVolume * 100}">
+                    <span class="settingsValue" id="musicVolumeValue">100</span>
+                </div>
+
+                <div class="settingsRow">
+                    <label class="settingsLabel">RESOLUTION</label>
+                    <select class="settingsSelect" id="resolutionSelect">
+                        <option value="1">360p</option>
+                        <option value="2">720p</option>
+                        <option value="3">1080p</option>
+                        <option value="4" selected>1440p</option>
+                        <option value="6">4K</option>
+                    </select>
+                </div>
+
+            </div>
+            <div id="settingsButtonRow">
+                <div class="settingsButton" id="settingsBack" onclick="returnToGame()">BACK</div>
+                <div class="settingsButton" id="settingsApply" onclick="applySettings()">APPLY</div>
+            </div>
+        </div>`;
+    document.getElementById("settingsScreen").innerHTML = html;
+    updateSettings();
+}
+
+function returnToGame() {
+    document.getElementById("settingsScreen").remove();
+}
+
 function enterMainMenu() {
+    music.stop();
+    document.getElementById("coinCounter")?.remove();
+    document.getElementById("timeRemaining")?.remove();
+    document.getElementById("fpsCounter")?.remove();
+    document.getElementById("hpCounter")?.remove();
     isOnSettingsPage = false;
     let html = "";
     html = `<div id="main-menu-container">
             <div id="title-main-menu">
                 Gears of Blood
             </div>
-            <div id="play-story-button-main-menu" class="main-menu-button" onclick="enterStoryFromMainMenu()">
-                Play Story
-            </div>
-            <div id="select-level-button-main-menu" class="main-menu-button" onclick="enterLevelSelectFromMainMenu()">
-                Select Level
-            </div>
-            <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
-                Play Endless
-            </div>
-            <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
-                Tutorial
-            </div>
-            <div id="settings-button-main-menu" class="main-menu-button" onclick="enterSettingsFromMainMenu()">
-                Settings
+            <div id="main-menu-button-container">
+                <div id="play-story-button-main-menu" class="main-menu-button" onclick="enterStoryFromMainMenu()">
+                    Not working!
+                </div>
+                <div id="select-level-button-main-menu" class="main-menu-button"
+                    onclick="enterLevelSelectFromMainMenu()">
+                    Not working!
+                </div>
+                <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
+                    Play Endless
+                </div>
+                <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
+                    Not working!
+                </div>
+                <div id="settings-button-main-menu" class="main-menu-button" onclick="enterSettingsFromMainMenu()">
+                    Settings
+                </div>
             </div>
         </div>`
     document.getElementById("screen").innerHTML = html;
-}*/
+}
 
 function startGame() {
     music.stop()
@@ -80,8 +158,8 @@ function startGame() {
 
     player = {
         difficulty: 1,
-        playerX: rng()*57600*-1,
-        playerY: rng()*57600*-1,
+        playerX: rng() * 57600 * -1,
+        playerY: rng() * 57600 * -1,
         originalHP: 100,
         MaxHp: 100,
         timeSinceDamage: 0,

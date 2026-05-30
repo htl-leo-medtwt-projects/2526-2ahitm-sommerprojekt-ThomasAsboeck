@@ -272,10 +272,6 @@ body {
     filter: saturate(0.5);
 }
 
-#settings-button-main-menu {
-    filter: saturate(0.5);
-}
-
 #tutorial-button-main-menu {
     filter: saturate(0.5);
 }
@@ -417,6 +413,162 @@ body {
 
 .scoreboardScore, .scoreboardKills, .scoreboardTimeSurvived {
     color: #C7C7C7;
+}
+
+#settingsScreen {
+    height: 360px;
+    width: 640px;
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#settingsContainer {
+    background-color: #182935;
+    width: 320px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#settingsTitle {
+    font-size: 12px;
+    color: #FCA173;
+    margin: 0;
+    text-align: center;
+}
+
+#settingsContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.settingsRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.settingsLabel {
+    color: #C7C7C7;
+    font-size: 6px;
+    font-family: Press_Start_2P;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.settingsSlider {
+    flex: 1;
+    accent-color: #FCA173;
+    cursor: pointer;
+    height: 4px;
+}
+
+.settingsValue {
+    color: #FCA173;
+    font-size: 6px;
+    font-family: Press_Start_2P;
+    width: 24px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.settingsSelect {
+    flex: 1;
+    background-color: #0f1e28;
+    border: 1px solid #FCA173;
+    color: #C7C7C7;
+    font-family: Press_Start_2P;
+    font-size: 6px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.settingsSelect:focus-visible {
+    outline: 0;
+}
+
+#settingsButtonRow {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.settingsButton {
+    background-color: #FCA173;
+    color: #383838;
+    font-family: Press_Start_2P;
+    font-size: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.settingsButton:hover {
+    background-color: #F68031;
+}
+
+#pauseScreen {
+    height: 360px;
+    width: 640px;
+    z-index: 1500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pauseContainer {
+    background-color: #182935;
+    width: 160px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#pauseTitle {
+    font-size: 12px;
+    color: #FCA173;
+    margin: 0;
+    text-align: center;
+}
+
+#pauseButtonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.pauseButton {
+    background-color: #FCA173;
+    color: #383838;
+    font-family: Press_Start_2P;
+    font-size: 6px;
+    padding: 8px 0;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.pauseButton:hover {
+    background-color: #F68031;
 }
 
 /*Fremdcode Start*/
