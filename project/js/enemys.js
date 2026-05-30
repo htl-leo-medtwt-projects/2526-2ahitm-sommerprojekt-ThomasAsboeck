@@ -8,7 +8,7 @@ function addEnemy() {
     element.id = "enemy" + enemyCounter;
 
     let enemy = {
-        hp: 100,
+        hp: 500,
         damage: 10,
         cooldown: 0,
         enemyX: Math.floor(rng() * (2880)-1440) + (-1 * player.playerX),
