@@ -60,6 +60,7 @@ function startGame() {
     document.getElementById("coinCounter")?.remove();
     document.getElementById("timeRemaining")?.remove();
     document.getElementById("fpsCounter")?.remove();
+    document.getElementById("hpCounter")?.remove();
     document.getElementById("screen").innerHTML = html;
     let coinCounter = document.createElement("div");
     coinCounter.id = "coinCounter";
@@ -72,6 +73,11 @@ function startGame() {
     let fpsCounter = document.createElement("div");
     fpsCounter.id = "fpsCounter";
     document.body.appendChild(fpsCounter);
+
+    let hpCounter = document.createElement("div");
+    hpCounter.id = "hpCounter";
+    document.body.appendChild(hpCounter);
+
     player = {
         difficulty: 1,
         playerX: rng()*57600*-1,

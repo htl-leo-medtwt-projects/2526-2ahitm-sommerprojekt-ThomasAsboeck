@@ -8,6 +8,7 @@ let weapons = [
         spread: 0.03,
         damage: 20,
         penetration: 1,
+        bullets: 1,
         isAuto: false
     },
     smg = {
@@ -19,6 +20,7 @@ let weapons = [
         spread: 0.075,
         damage: 20,
         penetration: 1,
+        bullets: 1,
         isAuto: true
     },
     assaultRifle = {
@@ -30,6 +32,7 @@ let weapons = [
         spread: 0.05,
         damage: 33,
         penetration: 1,
+        bullets: 1,
         isAuto: true
     },
     sniper = {
@@ -41,6 +44,19 @@ let weapons = [
         spread: 0.01,
         damage: 100,
         penetration: 3,
+        bullets: 1,
+        isAuto: false
+    },
+    shotgun = {
+        name: "Shotgun",
+        description: "Mit der Pumpgun; Auf zu Bank man;",
+        priceRange: 20,
+        speed: 2,
+        bpm: 90,
+        spread: 0.25,
+        damage: 15,
+        penetration: 1,
+        bullets: 7,
         isAuto: false
     }
 ];

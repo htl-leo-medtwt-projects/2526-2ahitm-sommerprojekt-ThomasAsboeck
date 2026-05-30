@@ -56,7 +56,7 @@ function gameLogic() {
 
 
             if (KEY_EVENTS.lmb) {
-                shoot(weapons[player.currentWeapon].speed, weapons[player.currentWeapon].bpm, weapons[player.currentWeapon].spread, weapons[player.currentWeapon].damage, weapons[player.currentWeapon].penetration, weapons[player.currentWeapon].isAuto)
+                shoot(weapons[player.currentWeapon].speed, weapons[player.currentWeapon].bpm, weapons[player.currentWeapon].spread, weapons[player.currentWeapon].damage, weapons[player.currentWeapon].penetration, weapons[player.currentWeapon].bullets, weapons[player.currentWeapon].isAuto)
             }
             else {
                 player.alreadyShot = false;
@@ -115,7 +115,7 @@ function gameLogic() {
                             enemys[i].hp -= bullets[j].damage * multipliers.damage;
                             hitSound.rate(0.8 + rng() * 0.4);
                             hitSound.play();
-                            killBullet(j);
+                            bullets[j].penetration = bullets[j].penetration -1;
                         }
                     }
                 }
@@ -188,6 +188,7 @@ function gameLogic() {
 
 
     document.getElementById("coinCounter").innerHTML = player.coins;
+    document.getElementById("hpCounter").innerHTML = `${player.hp}hp/${player.MaxHp}hp`;
     fpsCounter++;
     fpsTimer += deltaTime;
     if (fpsTimer >= 500) {
