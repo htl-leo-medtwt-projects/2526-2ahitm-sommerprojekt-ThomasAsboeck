@@ -1,12 +1,9 @@
-VARIABLES_MENU = {
-    volume: 0,
-    music: 0,
+let VARIABLES_MENU = {
+    masterVolume: 0,
+    musicVolume: 0,
     isShaking: true,
     isSandy: false
 }
-
-const music = new Audio('./music/music.mp3');
-const sfx = new Audio('./sfx/sfx.mp3');
 
 let isOnSettingsPage = false;
 

@@ -134,7 +134,7 @@ function highQualityBulletMath() {
 function checkBulletCollisions() {
     for (let i = 0; i < bullets.length; i++) {
         if (bullets[i] != null) {
-            if (bullets[i].bulletX < 0 || bullets[i].bulletX > 3840 || bullets[i].bulletY < 0 || bullets[i].bulletY > 2160) {
+            if (bullets[i].bulletX < 0 || bullets[i].bulletX > 57600 || bullets[i].bulletY < 0 || bullets[i].bulletY > 57600) {
                 killBullet(i);
             }
         }

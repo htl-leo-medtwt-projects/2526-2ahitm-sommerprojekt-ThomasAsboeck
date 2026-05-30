@@ -126,12 +126,17 @@ body {
 }
 
 #world {
-    background-image: url(../img/wallpaper1.jpg);
-    width: 3840px;
-    height: 2160px;
     position: absolute;
-    left: 304px;
-    bottom: 164px;   
+}
+
+#background {
+    background-image: url(../img/tileableBackground.png);
+    width: 57600px;
+    height: 57600px;
+    position: absolute;
+    background-repeat: repeat;
+    left: 0px;
+    bottom: 0px;   
 }
 
 .bullet {
@@ -392,13 +397,6 @@ body {
 
 .scoreboardScore, .scoreboardKills, .scoreboardTimeSurvived {
     color: #C7C7C7;
-}
-
-#tilemapCanvas {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: 10;
 }
 
 /*Fremdcode Start*/

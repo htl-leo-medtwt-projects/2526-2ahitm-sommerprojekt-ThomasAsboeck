@@ -53,7 +53,7 @@ function startGame() {
     let html = "";
     html = `
             <div id="world">
-            <canvas id="tilemapCanvas" width="2048" height="2048"></canvas>
+                <div id="background"></div>
             </div>
             <div id="player"></div>`;
 
@@ -74,8 +74,8 @@ function startGame() {
     document.body.appendChild(fpsCounter);
     player = {
         difficulty: 1,
-        playerX: 0,
-        playerY: 0,
+        playerX: rng()*57600*-1,
+        playerY: rng()*57600*-1,
         originalHP: 100,
         MaxHp: 100,
         timeSinceDamage: 0,

@@ -1,7 +1,7 @@
 let player = {
     difficulty: 1,
-    playerX: 0,
-    playerY: 0,
+    playerX: rng()*57600*-1,
+    playerY: rng()*57600*-1,
     originalHP: 100,
     MaxHp: 100,
     timeSinceDamage: 0,
@@ -34,6 +34,8 @@ let maxFrames = 4;
 let isShooting = false;
 let isDying = false;
 let timePerFrame = 150;
+let fpsTimer = 0;
+let fpsCounter = 0;
 let angle;
 
 function gameLogic() {
@@ -41,10 +43,10 @@ function gameLogic() {
         if (!isDying) {
             player.MaxHp = player.originalHP * multipliers.hp;
 
-            if (player.playerX - velocityX * multipliers.speed < 0 && player.playerX - velocityX * multipliers.speed > -3840 + 640) {
+            if (player.playerX - velocityX * multipliers.speed < 0 && player.playerX - velocityX * multipliers.speed > -57600 + 640) {
                 player.playerX -= velocityX * multipliers.speed;
             }
-            if (player.playerY - velocityY * multipliers.speed < 0 && player.playerY - velocityY * multipliers.speed > -2160 + 360) {
+            if (player.playerY - velocityY * multipliers.speed < 0 && player.playerY - velocityY * multipliers.speed > -57600 + 360) {
                 player.playerY -= velocityY * multipliers.speed;
             }
 
@@ -87,7 +89,7 @@ function gameLogic() {
             }
 
 
-            //player.timeRemaining = player.timeRemaining - deltaTime;
+            player.timeRemaining = player.timeRemaining - deltaTime;
 
             if (player.timeRemaining / 1000 < 1) {
                 player.isPaused = true;
@@ -186,8 +188,13 @@ function gameLogic() {
 
 
     document.getElementById("coinCounter").innerHTML = player.coins;
-    let fps = 1 / (deltaTime / 1000);
-    document.getElementById("fpsCounter").innerHTML = Math.floor(fps) + "FPS";
+    fpsCounter++;
+    fpsTimer += deltaTime;
+    if (fpsTimer >= 500) {
+        document.getElementById("fpsCounter").innerHTML = Math.floor(fpsCounter) + "FPS";
+        fpsCounter = 0;
+        fpsTimer = 0;
+    }
 }
 
 function saveRun() {

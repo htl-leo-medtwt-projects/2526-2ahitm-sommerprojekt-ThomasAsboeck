@@ -19,7 +19,7 @@ function gameLoop(timestamp) {
 
         movementCalculations();
         gameLogic();
-        //enemyLogic();
+        enemyLogic();
         highQualityBulletMath();
     }
 

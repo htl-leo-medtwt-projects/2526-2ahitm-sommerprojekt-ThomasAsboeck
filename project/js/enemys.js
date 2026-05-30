@@ -11,11 +11,11 @@ function addEnemy() {
         hp: 100,
         damage: 10,
         cooldown: 0,
-        enemyX: Math.floor(rng() * (3200)) + 304,
-        enemyY: Math.floor(rng() * (1800)) + 164,
+        enemyX: Math.floor(rng() * (2880)-1440) + (-1 * player.playerX),
+        enemyY: Math.floor(rng() * (2880)-1440) + (-1 * player.playerY),
         enemyOldX: 0,
         enemyOldY: 0,
-        speed: 0.32 * (1 + rng() * 0.1),
+        speed: 0.16 * (1 + rng() * 0.1),
         size: 32,
         enemyDirectionX: 0,
         enemyDirectionY: 0,
@@ -163,7 +163,7 @@ function enemyLogic() {
 
             }
         }
-        if (closestEnemyID != null && document.getElementById("enemy" + closestEnemyID)) {
+        if (closestEnemyID != null && document.getElementById("enemy" + closestEnemyID) && enemys[closestEnemyID].status != 3) {
             enemys[closestEnemyID].element.style.filter = "drop-shadow(0px 0px 10px #ff0000)";
         }
     }
@@ -172,6 +172,7 @@ function enemyLogic() {
 
 function killEnemy(i) {
     if (document.getElementById(`enemy${i}`) && enemys[i].status != 3) {
+        enemys[i].element.style.filter = "drop-shadow(0 0 0 #000000)";
         deathSound.rate(0.8 + rng() * 0.4);
         deathSound.play();
         player.kills++;

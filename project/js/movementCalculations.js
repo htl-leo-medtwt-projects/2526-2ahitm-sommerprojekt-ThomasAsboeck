@@ -1,5 +1,5 @@
 const acceleration = 0.1;
-const maxSpeed = 32 / 5;
+const maxSpeed = 1.6;
 const friction = 0.9;
 let wishY;
 let wishX;
