@@ -1,7 +1,7 @@
 let player = {
     difficulty: 1,
-    playerX: rng()*57600*-1,
-    playerY: rng()*57600*-1,
+    playerX: rng() * 57600 * -1,
+    playerY: rng() * 57600 * -1,
     originalHP: 100,
     MaxHp: 100,
     timeSinceDamage: 0,
@@ -42,6 +42,9 @@ function gameLogic() {
     if (!player.isPaused) {
         if (!isDying) {
             player.MaxHp = player.originalHP * multipliers.hp;
+            if (player.hp > player.MaxHp) {
+                player.hp = player.MaxHp;
+            }
 
             if (player.playerX - velocityX * multipliers.speed < 0 && player.playerX - velocityX * multipliers.speed > -57600 + 640) {
                 player.playerX -= velocityX * multipliers.speed;
@@ -115,7 +118,7 @@ function gameLogic() {
                             enemys[i].hp -= bullets[j].damage * multipliers.damage;
                             hitSound.rate(0.8 + rng() * 0.4);
                             hitSound.play();
-                            bullets[j].penetration = bullets[j].penetration -1;
+                            bullets[j].penetration = bullets[j].penetration - 1;
                         }
                     }
                 }

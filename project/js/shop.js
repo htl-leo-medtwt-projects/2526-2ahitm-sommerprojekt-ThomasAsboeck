@@ -78,7 +78,7 @@ function createShop() {
                         onmouseleave="hideShopTooltip()">
                         <p class="cardName">${w2.name}</p>
                         <p class="cardDesc">${w2.description}</p>
-                        <p class="cardPrice"${weaponPrice2} COINS</p>
+                        <p class="cardPrice">${weaponPrice2} COINS</p>
                     </div>
                 </div>
             </div>
@@ -225,51 +225,51 @@ function positionTooltip(card) {
     const tooltip    = document.getElementById("shopTooltip");
     const shopHeight = document.getElementById("shop").offsetHeight;
     const cardMidY   = card.offsetTop + card.offsetHeight / 2;
- 
+
     tooltip.style.left = card.offsetLeft + "px";
- 
+
     if (cardMidY > shopHeight / 2) {
-        // Lower half — show above the card
         tooltip.style.bottom = (shopHeight - card.offsetTop + 6) + "px";
         tooltip.style.top    = "auto";
     } else {
-        // Upper half — show below the card
         tooltip.style.top    = (card.offsetTop + card.offsetHeight + 6) + "px";
         tooltip.style.bottom = "auto";
     }
- 
-    tooltip.style.display = "block";
+
+    tooltip.style.display = "flex"; // was "block" — needs flex for column direction
 }
  
 function showWeaponTooltip(slot) {
     const newWeapon = weapons[slot === 1 ? weaponNumber1 : weaponNumber2];
     const curWeapon = weapons[player.currentWeapon];
- 
-    // Stats to compare — all "higher is better" (spread is inverted → accuracy)
+
     const stats = [
-        { label: "DAMAGE",    cur: curWeapon.damage        || 0, val: newWeapon.damage        || 0 },
-        { label: "FIRE RATE", cur: curWeapon.bpm           || 0, val: newWeapon.bpm           || 0 },
-        { label: "ACCURACY",  cur: 1 / (curWeapon.spread   || 1), val: 1 / (newWeapon.spread  || 1) },
-        { label: "SPEED",     cur: curWeapon.speed         || 0, val: newWeapon.speed   || 0 },
-        { label: "BULLETS",   cur: curWeapon.bulletCount   || 1, val: newWeapon.bulletCount   || 1 },
+        { label: "DAMAGE",   cur: curWeapon.damage              || 0, val: newWeapon.damage              || 0 },
+        { label: "RATE",     cur: curWeapon.bpm                 || 0, val: newWeapon.bpm                 || 0 },
+        { label: "ACCURACY", cur: 1 / (curWeapon.spread         || 1), val: 1 / (newWeapon.spread        || 1) },
+        { label: "SPEED",    cur: curWeapon.speed         || 0, val: newWeapon.speed         || 0 },
+        { label: "BULLETS",  cur: curWeapon.bulletCount         || 1, val: newWeapon.bulletCount         || 1 },
     ];
- 
-    let html = `<p class="ttTitle">VS CURRENT</p>`;
+
+    let html = `<p class="ttTitle">OLD VS NEW</p>`;
     for (const s of stats) {
-        const max  = Math.max(s.cur, s.val, 0.001);
-        const wCur = Math.round((s.cur / max) * 80);
-        const wNew = Math.round((s.val / max) * 80);
-        const barColor = s.val > s.cur ? "#7a9050" : s.val < s.cur ? "#8a4545" : "#aab09a";
+        const total = s.cur + s.val || 1;
+
+        let curColor, newColor;
+        if (s.cur > s.val)      { curColor = "#7a9050"; newColor = "#8a4545"; }
+        else if (s.cur < s.val) { curColor = "#8a4545"; newColor = "#7a9050"; }
+        else                    { curColor = newColor = "#aab09a"; }
+
         html += `
         <div class="ttRow">
             <span class="ttLabel">${s.label}</span>
             <div class="ttBars">
-                <div class="ttBar ttCurrent" style="width:${wCur}px"></div>
-                <div class="ttBar ttNew" style="width:${wNew}px;background:${barColor}"></div>
+                <div class="ttBar" style="flex:${s.cur / total};background:${curColor}"></div>
+                <div class="ttBar" style="flex:${s.val / total};background:${newColor}"></div>
             </div>
         </div>`;
     }
- 
+
     const tooltip = document.getElementById("shopTooltip");
     tooltip.innerHTML = html;
     positionTooltip(document.getElementById("shopWeapon" + slot));
@@ -318,6 +318,7 @@ function continueShop() {
     document.getElementById("world").style.filter = "brightness(1)";
     player.isPaused = false;
     player.timeRemaining = 61000;
+    player.hp += 20*multipliers.regen;
     if (!startShopCheck) {
         player.difficulty = player.difficulty * 1.5;
     } else {

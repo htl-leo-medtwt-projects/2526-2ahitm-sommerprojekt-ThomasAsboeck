@@ -189,7 +189,7 @@ body {
     text-shadow: 0px 5px 0px #000000;
 }
 
-/* ── Shop ────────────────────────────────────────── */
+/* ── Shop ────────────────────────────────────────────────────────────────── */
 
 #shop {
     height: 240px;
@@ -199,119 +199,225 @@ body {
     top: 45px;
     left: 80px;
     background-color: #252520;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;  /* header top, footer bottom, no pooled gap */
+    padding: 8px 0;
+    box-sizing: border-box;
 }
+
+/* ── Header ── */
+
+#shopHeader {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 12px;
+}
+
+#shopTitle {
+    font-size: 14px;
+    color: #aab09a;
+    margin: 0;
+    text-align: center;
+}
+
+#shopCoinDisplay {
+    font-size: 6px;
+    color: #7a9050;
+    margin: 0;
+    text-align: center;
+}
+
+/* ── Content ── */
 
 #shopContent {
     display: flex;
     flex-direction: column;
+    gap: 6px;
+    padding: 0 8px;
+}
+
+.shopSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;          /* ← each section takes equal share of shopContent */
+}
+
+.shopSectionLabel {
+    font-size: 6px;
+    color: #aab09a;
+    margin: 0;
+    text-align: center;
 }
 
 .shopRow {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    gap: 6px;
+    flex: 1;          /* ← row fills its section */
 }
 
+/* ── Cards ── */
+
 .shopCard {
-    width: 30%;
+    flex: 1;
     background-color: #7a9050;
-    padding: 0 4px;
+    color: #181810;
+    padding: 4px 6px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;               /* ← so card contents can center vertically */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shopCard p {
+    margin: 0 0 2px 0;
 }
 
 .shopCard:hover {
-    cursor: pointer;
     background-color: #5e7040;
 }
 
 .cardSelected {
     background-color: #5e7040;
-    color: #aab09a;
+    outline: 1px solid #aab09a;
+}
+
+.cardName {
+    font-size: 6px;
+    color: #181810;
 }
 
 .cardDesc {
-    font-size: 75%;
+    font-size: 5px;
+    color: #1c1c17;
 }
 
-.shopSectionLabel {
-    color: #aab09a;
+.cardPrice {
+    font-size: 6px;
+    color: #181810;
 }
 
-#shopTitle {
-    font-weight: 800;
-    font-size: 110%;
-    color: #aab09a;
-}
+/* ── Footer ── */
 
 #shopFooter {
     display: flex;
     align-items: center;
-    color: #aab09a;
+    padding: 0 12px;
+    gap: 8px;
 }
 
 #shopSummary {
-    width: 45%;
-    margin: 0 10% 0 5%;
+    flex: 1;
+    text-align: left;
 }
 
-#shopSkipBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
-    height: 50%;
-    margin: 0 5%;
-    background-color: #7a9050;
-    color: #252520;
+#shopTotal {
+    font-size: 6px;
+    color: #aab09a;
+    margin: 0 0 2px 0;
 }
 
-#shopSkipBtn:hover {
-    background-color: #5e7040;
-    cursor: pointer;
+#shopAfford {
+    font-size: 5px;
+    color: #58584a;
+    margin: 0;
 }
 
+#shopSkipBtn,
 #shopConfirmBtn {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
-    height: 50%;
-    margin-right: 5%;
+    padding: 5px 10px;
     background-color: #7a9050;
-    color: #252520;
+    color: #181810;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: Press_Start_2P;
+    font-size: 5px;
 }
 
+#shopSkipBtn:hover,
 #shopConfirmBtn:hover {
     background-color: #5e7040;
-    cursor: pointer;
 }
 
+.btnDisabled {
+    filter: saturate(0.2);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ── Tooltip ── */
+
 #shopTooltip {
-    display: flex;
-    width: 30%;
+    display: none;
     position: absolute;
-    background-color: #5e7040;
-    padding-bottom: 4px;
+    width: 140px;
+    flex-direction: column;
+    gap: 3px;
+    background-color: #1c1c17;
+    border: 1px solid #7a9050;
+    padding: 6px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.ttTitle {
+    font-size: 6px;
+    color: #7a9050;
+    margin: 0 0 4px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #3a3a30;
+    text-align: center;
+}
+
+/* Weapon comparison bars */
+
+.ttRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.ttLabel {
+    font-size: 5px;
     color: #aab09a;
-    padding-left: 4px;
-    padding-right: 4px;
+    width: 56px;      /* was 44px — "FIRE RATE" needs ~54px at this font size */
+    flex-shrink: 0;
 }
 
 .ttBars {
     display: flex;
-}
-
-.ttCurrent {
-    background-color: #aab09a;
+    width: 60px;      /* fixed width — consistent across all rows regardless of label */
+    flex-shrink: 0;
+    height: 8px;
 }
 
 .ttBar {
-    height: 8px;
+    height: 100%;
+    min-width: 4px;   /* ← always visible even when value is near zero */
     outline: 1px solid #0a0a08;
     outline-offset: -1px;
+}
+
+/* Upgrade bonus rows */
+
+.ttUpgradeRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.ttValue {
+    font-size: 6px;
 }
 
 
