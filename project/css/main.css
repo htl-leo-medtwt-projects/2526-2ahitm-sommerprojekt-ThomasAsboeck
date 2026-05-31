@@ -82,6 +82,7 @@ body {
 
 .main-menu-button:hover {
     cursor: pointer;
+    background-color: #5e7040;
 }
 
 #title-main-menu {
@@ -198,54 +199,121 @@ body {
     top: 45px;
     left: 80px;
     background-color: #252520;
-}
-
-#shopContainer {
-    width: 100%;
-    height: 80%;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-}
-
-#weaponContainer {
-    width: 100%;
-    display: flex;
-    height: 50%;
-    flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
 }
 
-#upgradeContainer {
-    width: 100%;
-    height: 50%;
+#shopContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.shopRow {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
 }
 
-#shopContinue {
-    width: min-content;
-    background-color: #7a9050;
-    color: #181810;
-    padding: 8px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.shopWeapon {
-    width: 45%;
-}
-
-.shopUpgrade {
+.shopCard {
     width: 30%;
+    background-color: #7a9050;
+    padding: 0 4px;
 }
+
+.shopCard:hover {
+    cursor: pointer;
+    background-color: #5e7040;
+}
+
+.cardSelected {
+    background-color: #5e7040;
+    color: #aab09a;
+}
+
+.cardDesc {
+    font-size: 75%;
+}
+
+.shopSectionLabel {
+    color: #aab09a;
+}
+
+#shopTitle {
+    font-weight: 800;
+    font-size: 110%;
+    color: #aab09a;
+}
+
+#shopFooter {
+    display: flex;
+    align-items: center;
+    color: #aab09a;
+}
+
+#shopSummary {
+    width: 45%;
+    margin: 0 10% 0 5%;
+}
+
+#shopSkipBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 50%;
+    margin: 0 5%;
+    background-color: #7a9050;
+    color: #252520;
+}
+
+#shopSkipBtn:hover {
+    background-color: #5e7040;
+    cursor: pointer;
+}
+
+#shopConfirmBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 50%;
+    margin-right: 5%;
+    background-color: #7a9050;
+    color: #252520;
+}
+
+#shopConfirmBtn:hover {
+    background-color: #5e7040;
+    cursor: pointer;
+}
+
+#shopTooltip {
+    display: flex;
+    width: 30%;
+    position: absolute;
+    background-color: #5e7040;
+    padding-bottom: 4px;
+    color: #aab09a;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.ttBars {
+    display: flex;
+}
+
+.ttCurrent {
+    background-color: #aab09a;
+}
+
+.ttBar {
+    height: 8px;
+    outline: 1px solid #0a0a08;
+    outline-offset: -1px;
+}
+
 
 /* ── Death Screen ────────────────────────────────── */
 
