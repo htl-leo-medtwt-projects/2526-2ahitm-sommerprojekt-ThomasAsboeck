@@ -35,7 +35,7 @@ function updateSound() {
     hitSound.stop();
     attackSound.stop();
     deathSound.stop();
-    musi.stop();
+    music.stop();
 
     shootSound.volume(0.25 * VARIABLES_MENU.masterVolume);
     hitSound.volume(0.5 * VARIABLES_MENU.masterVolume);

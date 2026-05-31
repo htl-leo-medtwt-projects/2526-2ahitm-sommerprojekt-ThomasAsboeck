@@ -9,25 +9,25 @@ function enterSettingsFromMainMenu() {
             <div id="settingsContent">
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">MASTER VOL</label>
+                    <p class="settingsLabel">MASTER VOL</p>
                     <input type="range" class="settingsSlider" id="masterVolume" min="0" max="100" value="${VARIABLES_MENU.masterVolume * 100}">
                     <span class="settingsValue" id="masterVolumeValue">100</span>
                 </div>
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">MUSIC VOL</label>
+                    <p class="settingsLabel">MUSIC VOL</p>
                     <input type="range" class="settingsSlider" id="musicVolume" min="0" max="100" value="${VARIABLES_MENU.musicVolume * 100}">
                     <span class="settingsValue" id="musicVolumeValue">100</span>
                 </div>
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">RESOLUTION</label>
+                    <p class="settingsLabel">RESOLUTION</p>
                     <select class="settingsSelect" id="resolutionSelect">
-                        <option value="1">360p</option>
-                        <option value="2">720p</option>
-                        <option value="3">1080p</option>
-                        <option value="4" selected>1440p</option>
-                        <option value="6">4K</option>
+                        <option value="1" id="resolution0">360p</option>
+                        <option value="2" id="resolution1">720p</option>
+                        <option value="3" id="resolution2">1080p</option>
+                        <option value="4" id="resolution3">1440p</option>
+                        <option value="6" id="resolution4">4K</option>
                     </select>
                 </div>
 
@@ -39,6 +39,13 @@ function enterSettingsFromMainMenu() {
         </div>
     </div>`;
     document.getElementById("screen").innerHTML = html;
+    for(let i = 0; i < 5; i++) {
+        if (document.getElementById("resolution"+i).value == VARIABLES_MENU.scale) {
+            let html = "";
+            html = `<option value="${VARIABLES_MENU.scale}" id="resolution${i}" selected>${document.getElementById("resolution"+i).innerHTML}</option>`;
+            document.getElementById("resolution"+i).outerHTML = html;
+        }
+    }
     updateSettings();
 }
 
@@ -55,25 +62,25 @@ function enterSettingsFromGame() {
             <div id="settingsContent">
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">MASTER VOL</label>
+                    <p class="settingsLabel">MASTER VOL</p>
                     <input type="range" class="settingsSlider" id="masterVolume" min="0" max="100" value="${VARIABLES_MENU.masterVolume * 100}">
                     <span class="settingsValue" id="masterVolumeValue">100</span>
                 </div>
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">MUSIC VOL</label>
+                    <p class="settingsLabel">MUSIC VOL</p>
                     <input type="range" class="settingsSlider" id="musicVolume" min="0" max="100" value="${VARIABLES_MENU.musicVolume * 100}">
                     <span class="settingsValue" id="musicVolumeValue">100</span>
                 </div>
 
                 <div class="settingsRow">
-                    <label class="settingsLabel">RESOLUTION</label>
+                    <p class="settingsLabel">RESOLUTION</p>
                     <select class="settingsSelect" id="resolutionSelect">
-                        <option value="1">360p</option>
-                        <option value="2">720p</option>
-                        <option value="3">1080p</option>
-                        <option value="4" selected>1440p</option>
-                        <option value="6">4K</option>
+                        <option value="1" id="resolution0">360p</option>
+                        <option value="2" id="resolution1">720p</option>
+                        <option value="3" id="resolution2">1080p</option>
+                        <option value="4" id="resolution3">1440p</option>
+                        <option value="6" id="resolution4">4K</option>
                     </select>
                 </div>
 
@@ -84,6 +91,13 @@ function enterSettingsFromGame() {
             </div>
         </div>`;
     document.getElementById("settingsScreen").innerHTML = html;
+    for(let i = 0; i < 5; i++) {
+        if (document.getElementById("resolution"+i).value == VARIABLES_MENU.scale) {
+            let html = "";
+            html = `<option value="VARIABLES_MENU.scale" id="resolution${i}" selected>${document.getElementById("resolution"+i).innerHTML}</option>`;
+            document.getElementById("resolution"+i).outerHTML = html;
+        }
+    }
     updateSettings();
 }
 
@@ -91,8 +105,78 @@ function returnToGame() {
     document.getElementById("settingsScreen").remove();
 }
 
+function enterTutorialFromMainMenu() {
+    let html = "";
+    html = `<div id="tutorialScreen">
+                <div id="tutorialContainer">
+
+                    <div id="tutorialHeader">
+                        <p id="tutorialTitle">HOW TO PLAY</p>
+                        <span id="tutorialPageNum">1 / 3</span>
+                    </div>
+
+                    <div class="tutPage" id="tutPage1">
+                        <p class="tutSection">MOVEMENT</p>
+                        <div id="tutMovementLayout">
+                            <div id="wasdGrid">
+                                <div></div><span class="key">W</span><div></div>
+                                <span class="key">A</span><span class="key">S</span><span class="key">D</span>
+                            </div>
+                            <div class="tutLines">
+                                <p class="tutLine"><span class="tutAcc">W</span> MOVE TOWARD MOUSE</p>
+                                <p class="tutLine"><span class="tutAcc">S</span> MOVE AWAY FROM MOUSE</p>
+                                <p class="tutLine"><span class="tutAcc">A</span> STRAFE LEFT</p>
+                                <p class="tutLine"><span class="tutAcc">D</span> STRAFE RIGHT</p>
+                                <p class="tutLine"><span class="tutAcc">SHIFT</span> LOCK MOVE DIRECTION</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutPage" id="tutPage2">
+                        <p class="tutSection">COMBAT</p>
+                        <div class="tutLines">
+                            <p class="tutLine">YOUR GUN ALWAYS AIMS AT</p>
+                            <p class="tutLine">THE ENEMY CLOSEST TO</p>
+                            <p class="tutLine">YOUR CURSOR</p>
+                            <br>
+                            <p class="tutLine"><span class="tutAcc">LMB</span> SHOOT</p>
+                            <br>
+                            <p class="tutLine tutMuted">TIP: POSITION YOUR CURSOR</p>
+                            <p class="tutLine tutMuted">TO CONTROL WHICH ENEMY</p>
+                            <p class="tutLine tutMuted">YOU TARGET</p>
+                        </div>
+                    </div>
+
+                    <div class="tutPage" id="tutPage3">
+                        <p class="tutSection">WAVES</p>
+                        <div class="tutLines">
+                            <p class="tutLine">EACH WAVE LASTS <span class="tutAcc">60 SECONDS</span></p>
+                            <p class="tutLine">SURVIVE TO EARN COINS</p>
+                            <br>
+                            <p class="tutLine">AFTER EACH WAVE YOU CAN</p>
+                            <p class="tutLine">BUY NEW <span class="tutAcc">WEAPONS</span> AND</p>
+                            <p class="tutLine"><span class="tutAcc">UPGRADES</span> IN THE SHOP</p>
+                            <br>
+                            <p class="tutLine">EACH WAVE SPAWNS MORE</p>
+                            <p class="tutLine">AND STRONGER ENEMIES</p>
+                        </div>
+                    </div>
+
+                    <div id="tutorialNav">
+                        <div class="tutorialButton tutDisabled" id="tutPrev" onclick="tutPrevPage()">&#8592; PREV</div>
+                        <div class="tutorialButton" id="tutClose" onclick="enterMainMenu()">CLOSE</div>
+                        <div class="tutorialButton" id="tutNext" onclick="tutNextPage()">NEXT &#8594;</div>
+                    </div>
+
+                </div>
+            </div>`;
+    document.getElementById("screen").innerHTML = html;
+    updateTutorial();
+}
+
 function enterMainMenu() {
     music.stop();
+    stopTime = false;
     document.getElementById("coinCounter")?.remove();
     document.getElementById("timeRemaining")?.remove();
     document.getElementById("fpsCounter")?.remove();
@@ -104,18 +188,11 @@ function enterMainMenu() {
                 Gears of Blood
             </div>
             <div id="main-menu-button-container">
-                <div id="play-story-button-main-menu" class="main-menu-button" onclick="enterStoryFromMainMenu()">
-                    Not working!
-                </div>
-                <div id="select-level-button-main-menu" class="main-menu-button"
-                    onclick="enterLevelSelectFromMainMenu()">
-                    Not working!
-                </div>
                 <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
                     Play Endless
                 </div>
                 <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
-                    Not working!
+                    Tutorial
                 </div>
                 <div id="settings-button-main-menu" class="main-menu-button" onclick="enterSettingsFromMainMenu()">
                     Settings

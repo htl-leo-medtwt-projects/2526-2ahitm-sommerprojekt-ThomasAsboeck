@@ -13,12 +13,24 @@
     src: url(../font/PressStart2P-Regular.ttf);
 }
 
+/*
+    COLOR PALETTE
+    --bg-deep:      #0a0a08   (body, near-black)
+    --bg-container: #1c1c17   (panels, menus)
+    --bg-input:     #111110   (inputs, dark surfaces)
+    --accent:       #7a9050   (moss green — buttons, highlights)
+    --accent-hover: #5e7040   (darker moss — hover states)
+    --text-light:   #aab09a   (primary text, aged warm gray)
+    --text-on-btn:  #181810   (text on green buttons)
+    --text-muted:   #58584a   (secondary/hint text)
+*/
+
 body {
     margin: 0;
     height: 360px;
     width: 640px;
     image-rendering: pixelated;
-    background-color: black;
+    background-color: #0a0a08;
     font-family: Press_Start_2P;
     user-select: none;
     overflow: hidden;
@@ -37,8 +49,10 @@ body {
     overflow: hidden;
 }
 
+/* ── Main Menu ───────────────────────────────────── */
+
 #main-menu-container {
-    background-color: #182935;
+    background-color: #1c1c17;
     width: 160px;
     height: 360px;
     margin-left: 80px;
@@ -57,8 +71,8 @@ body {
 .main-menu-button {
     font-size: 8px;
     display: flex;
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     margin: 0 16px 16px 16px;
     width: 128px;
     height: 32px;
@@ -72,45 +86,13 @@ body {
 
 #title-main-menu {
     font-size: 16px;
-    color: #C7C7C7;
+    color: #aab09a;
     text-align: center;
     width: 100%;
     padding-top: 16px;
 }
 
-#level-select-container {
-    margin: auto;
-    margin-bottom: 88px;
-    margin-top: 88px;
-    height: 184px;
-    width: 600px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: #182935;
-}
-
-.level-preview-container {
-    background-color: #FCA173;
-    width: 160px;
-    height: 90px;
-    margin: 20px;
-}
-
-.level-button-container {
-    background-color: #F68031;
-    width: 128px;
-    height: 32px;
-    margin: 0 auto 20px auto;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #383838;
-}
-
-.level-button-container:hover {
-    cursor: pointer;
-}
+/* ── Game World ──────────────────────────────────── */
 
 #player {
     background-image: url(../img/sprites/Player/0.png);
@@ -136,16 +118,22 @@ body {
     position: absolute;
     background-repeat: repeat;
     left: 0px;
-    bottom: 0px;   
+    bottom: 0px;
 }
 
 .bullet {
     position: absolute;
-    background-color: yellow;
-    box-shadow: 0 0 6px 2px #ffff00;
+    background-color: #c8e050;
+    box-shadow: 0 0 6px 2px #c8e050;
     width: 2px;
     height: 2px;
 }
+
+.enemy {
+    position: absolute;
+}
+
+/* ── HUD ─────────────────────────────────────────── */
 
 #fpsCounter {
     transform-origin: top right;
@@ -156,12 +144,11 @@ body {
     right: 0;
     font-size: 2rem;
     padding: 16px;
-    color: #C7C7C7;
+    color: #aab09a;
     text-shadow: 0px 5px 0px #000000;
 }
 
 #coinCounter {
-    transform-origin: top right;
     width: fit-content;
     height: fit-content;
     position: absolute;
@@ -170,12 +157,11 @@ body {
     margin-left: 8px;
     font-size: 2rem;
     padding: 16px;
-    color: #C7C7C7;
+    color: #aab09a;
     text-shadow: 0px 5px 0px #000000;
 }
 
 #hpCounter {
-    transform-origin: top right;
     width: fit-content;
     height: fit-content;
     position: absolute;
@@ -184,12 +170,11 @@ body {
     margin-left: 8px;
     font-size: 2rem;
     padding: 16px;
-    color: #C7C7C7;
+    color: #aab09a;
     text-shadow: 0px 5px 0px #000000;
 }
 
 #timeRemaining {
-    transform-origin: top right;
     width: 100%;
     height: fit-content;
     position: absolute;
@@ -199,13 +184,11 @@ body {
     margin-left: 8px;
     font-size: 2rem;
     padding: 16px;
-    color: #C7C7C7;
+    color: #aab09a;
     text-shadow: 0px 5px 0px #000000;
 }
 
-.enemy {
-    position: absolute;
-}
+/* ── Shop ────────────────────────────────────────── */
 
 #shop {
     height: 240px;
@@ -214,7 +197,7 @@ body {
     position: absolute;
     top: 45px;
     left: 80px;
-    background-color: wheat;
+    background-color: #252520;
 }
 
 #shopContainer {
@@ -247,8 +230,8 @@ body {
 
 #shopContinue {
     width: min-content;
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     padding: 8px;
     display: block;
     margin-left: auto;
@@ -264,17 +247,7 @@ body {
     width: 30%;
 }
 
-#play-story-button-main-menu {
-    filter: saturate(0.5);
-}
-
-#select-level-button-main-menu {
-    filter: saturate(0.5);
-}
-
-#tutorial-button-main-menu {
-    filter: saturate(0.5);
-}
+/* ── Death Screen ────────────────────────────────── */
 
 #deathScreen {
     height: 360px;
@@ -283,7 +256,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(5, 5, 3, 0.90);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -292,7 +265,7 @@ body {
 }
 
 #deathContainer {
-    background-color: #182935;
+    background-color: #1c1c17;
     width: 200px;
     padding: 16px;
     display: flex;
@@ -303,7 +276,7 @@ body {
 
 #deathTitle {
     font-size: 12px;
-    color: #FCA173;
+    color: #7a9050;
     margin: 0;
     text-align: center;
 }
@@ -313,7 +286,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    color: #C7C7C7;
+    color: #aab09a;
 }
 
 #deathStats p {
@@ -322,8 +295,8 @@ body {
 }
 
 #restartButton {
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 6px 12px;
@@ -332,11 +305,13 @@ body {
 }
 
 #restartButton:hover {
-    background-color: #F68031;
+    background-color: #5e7040;
 }
 
+/* ── Scoreboard ──────────────────────────────────── */
+
 #scoreboardContainer {
-    background-color: #182935;
+    background-color: #1c1c17;
     width: 220px;
     height: 280px;
     padding: 16px;
@@ -353,9 +328,9 @@ body {
 }
 
 #ign {
-    background-color: #0f1e28;
-    border: 1px solid #FCA173;
-    color: #C7C7C7;
+    background-color: #111110;
+    border: 1px solid #7a9050;
+    color: #aab09a;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 4px;
@@ -363,8 +338,8 @@ body {
 }
 
 #submitIGN {
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 4px 8px;
@@ -373,7 +348,7 @@ body {
 }
 
 #submitIGN:hover {
-    background-color: #F68031;
+    background-color: #5e7040;
 }
 
 #scoreboard {
@@ -389,48 +364,50 @@ body {
 }
 
 #scoreboard::-webkit-scrollbar-thumb {
-    background-color: #FCA173;
+    background-color: #7a9050;
 }
 
 #scoreboard::-webkit-scrollbar-track {
-    background-color: #0f1e28;
+    background-color: #111110;
 }
 
 .scoreboardEntry {
-    background-color: #0f1e28;
+    background-color: #111110;
     padding: 4px;
     display: flex;
     flex-direction: column;
     gap: 2px;
-    color: #C7C7C7;
     font-size: 5px;
 }
 
 .scoreboardName {
-    color: #FCA173;
+    color: #7a9050;
     font-size: 6px;
 }
 
-.scoreboardScore, .scoreboardKills, .scoreboardTimeSurvived {
-    color: #C7C7C7;
+.scoreboardScore,
+.scoreboardKills,
+.scoreboardTimeSurvived {
+    color: #aab09a;
 }
+
+/* ── Settings ────────────────────────────────────── */
 
 #settingsScreen {
     height: 360px;
     width: 640px;
-    z-index: 2000;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    background-color: rgba(5, 5, 3, 0.90);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
 }
 
 #settingsContainer {
-    background-color: #182935;
+    background-color: #1c1c17;
     width: 320px;
     padding: 24px;
     display: flex;
@@ -441,7 +418,7 @@ body {
 
 #settingsTitle {
     font-size: 12px;
-    color: #FCA173;
+    color: #7a9050;
     margin: 0;
     text-align: center;
 }
@@ -461,7 +438,7 @@ body {
 }
 
 .settingsLabel {
-    color: #C7C7C7;
+    color: #aab09a;
     font-size: 6px;
     font-family: Press_Start_2P;
     width: 80px;
@@ -470,13 +447,13 @@ body {
 
 .settingsSlider {
     flex: 1;
-    accent-color: #FCA173;
+    accent-color: #7a9050;
     cursor: pointer;
     height: 4px;
 }
 
 .settingsValue {
-    color: #FCA173;
+    color: #7a9050;
     font-size: 6px;
     font-family: Press_Start_2P;
     width: 24px;
@@ -486,9 +463,9 @@ body {
 
 .settingsSelect {
     flex: 1;
-    background-color: #0f1e28;
-    border: 1px solid #FCA173;
-    color: #C7C7C7;
+    background-color: #111110;
+    border: 1px solid #7a9050;
+    color: #aab09a;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 4px;
@@ -506,8 +483,8 @@ body {
 }
 
 .settingsButton {
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 6px 12px;
@@ -516,8 +493,10 @@ body {
 }
 
 .settingsButton:hover {
-    background-color: #F68031;
+    background-color: #5e7040;
 }
+
+/* ── Pause Screen ────────────────────────────────── */
 
 #pauseScreen {
     height: 360px;
@@ -526,14 +505,14 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(5, 5, 3, 0.80);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #pauseContainer {
-    background-color: #182935;
+    background-color: #1c1c17;
     width: 160px;
     padding: 20px;
     display: flex;
@@ -544,7 +523,7 @@ body {
 
 #pauseTitle {
     font-size: 12px;
-    color: #FCA173;
+    color: #7a9050;
     margin: 0;
     text-align: center;
 }
@@ -557,8 +536,8 @@ body {
 }
 
 .pauseButton {
-    background-color: #FCA173;
-    color: #383838;
+    background-color: #7a9050;
+    color: #181810;
     font-family: Press_Start_2P;
     font-size: 6px;
     padding: 8px 0;
@@ -568,7 +547,142 @@ body {
 }
 
 .pauseButton:hover {
-    background-color: #F68031;
+    background-color: #5e7040;
+}
+
+/* ── Tutorial ────────────────────────────────────── */
+
+#tutorialScreen {
+    height: 360px;
+    width: 640px;
+    z-index: 1500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(5, 5, 3, 0.90);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tutorialContainer {
+    background-color: #1c1c17;
+    width: 420px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#tutorialHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#tutorialTitle {
+    font-size: 12px;
+    color: #7a9050;
+    margin: 0;
+}
+
+#tutorialPageNum {
+    font-size: 6px;
+    color: #aab09a;
+}
+
+.tutPage {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 130px;
+}
+
+.tutPage.active {
+    display: flex;
+}
+
+.tutSection {
+    font-size: 8px;
+    color: #7a9050;
+    margin: 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #7a9050;
+}
+
+#tutMovementLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+#wasdGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 20px);
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.key {
+    display: flex;
+    background-color: #111110;
+    border: 1px solid #7a9050;
+    color: #7a9050;
+    font-family: Press_Start_2P;
+    font-size: 6px;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutLines {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tutLine {
+    font-size: 6px;
+    color: #aab09a;
+    margin: 0;
+}
+
+.tutAcc {
+    color: #7a9050;
+}
+
+.tutMuted {
+    color: #58584a;
+}
+
+#tutorialNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.tutorialButton {
+    background-color: #7a9050;
+    color: #181810;
+    font-family: Press_Start_2P;
+    font-size: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.tutorialButton:hover {
+    background-color: #5e7040;
+}
+
+.tutorialButton.tutDisabled {
+    filter: saturate(0.25);
+    cursor: default;
+    pointer-events: none;
 }
 
 /*Fremdcode Start*/

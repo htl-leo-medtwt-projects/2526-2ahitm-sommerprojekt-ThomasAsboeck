@@ -50,3 +50,25 @@ function applySettings() {
     localStorage.setItem("scale", VARIABLES_MENU.scale);
     updateSound();
 }
+
+let tutPage = 1;
+const TUT_PAGES = 3;
+
+function updateTutorial() {
+    for (let i = 1; i <= TUT_PAGES; i++) {
+        document.getElementById("tutPage" + i).classList.toggle("active", i === tutPage);
+    }
+    document.getElementById("tutorialPageNum").textContent = tutPage + " / " + TUT_PAGES;
+    document.getElementById("tutPrev").classList.toggle("tutDisabled", tutPage === 1);
+    document.getElementById("tutNext").classList.toggle("tutDisabled", tutPage === TUT_PAGES);
+}
+
+function tutNextPage() {
+    tutPage++;
+    updateTutorial();
+}
+
+function tutPrevPage() {
+    tutPage--;
+    updateTutorial();
+}
