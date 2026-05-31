@@ -185,17 +185,17 @@ function enterMainMenu() {
     let html = "";
     html = `<div id="main-menu-container">
             <div id="title-main-menu">
-                Gears of Blood
+                GEARS OF BLOOD
             </div>
             <div id="main-menu-button-container">
                 <div id="play-endless-button-main-menu" class="main-menu-button" onclick="startGame()">
-                    Play Endless
+                    PLAY ENDLESS
                 </div>
                 <div id="tutorial-button-main-menu" class="main-menu-button" onclick="enterTutorialFromMainMenu()">
-                    Tutorial
+                    TUTORIAL
                 </div>
                 <div id="settings-button-main-menu" class="main-menu-button" onclick="enterSettingsFromMainMenu()">
-                    Settings
+                    SETTINGS
                 </div>
             </div>
         </div>`

@@ -48,8 +48,8 @@ let weapons = [
         isAuto: false
     },
     shotgun = {
-        name: "Shotgun",
-        description: "Mit der Pumpgun; Auf zu Bank man;",
+        name: "Mossberg 500",
+        description: "More bullets will surely help.",
         priceRange: 20,
         speed: 2,
         bpm: 90,

@@ -182,13 +182,13 @@ function gameLogic() {
             }
         }
         frameTimer += deltaTime;
-        document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000) + "s remaining";
+        document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000) + "S REMAINING";
     }
 
 
 
-    document.getElementById("coinCounter").innerHTML = Math.floor(player.coins) + " coins";
-    document.getElementById("hpCounter").innerHTML = `${Math.floor(player.hp)}hp/${Math.floor(player.MaxHp)}hp`;
+    document.getElementById("coinCounter").innerHTML = Math.floor(player.coins) + " COINS";
+    document.getElementById("hpCounter").innerHTML = `${Math.floor(player.hp)}HP/${Math.floor(player.MaxHp)}HP`;
     fpsCounter++;
     fpsTimer += deltaTime;
     if (fpsTimer >= 500) {
@@ -221,10 +221,10 @@ function saveRun() {
         const entry = document.createElement("div");
         entry.className = "scoreboardEntry";
         entry.innerHTML = `
-            <div class="scoreboardName">${scoreboard[i].name}</div>
-            <div class="scoreboardScore">Score: ${Math.floor(scoreboard[i].score)}</div>
-            <div class="scoreboardKills">Kills: ${scoreboard[i].kills}</div>
-            <div class="scoreboardTimeSurvived">Survived for: ${scoreboard[i].timeSurvived}s</div>`;
+            <div class="scoreboardName">${scoreboard[i].name.toUpperCase()}</div>
+            <div class="scoreboardScore">SCORE: ${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">KILLS: ${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">SURVIVED FOR: ${scoreboard[i].timeSurvived}S</div>`;
         document.getElementById("scoreboard").appendChild(entry);
     }
 }

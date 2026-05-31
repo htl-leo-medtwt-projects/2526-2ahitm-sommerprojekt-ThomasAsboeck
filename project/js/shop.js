@@ -81,12 +81,12 @@ function createShop() {
     document.getElementById("screen").innerHTML += html;
     document.getElementById("world").style.filter = "brightness(0.5)";
 
-    document.getElementById("shopWeapon1").innerHTML = `<p>${weapons[weaponNumber1].name}</p><p>${weapons[weaponNumber1].description}</p><p>${weaponPrice1}</p>`;
-    document.getElementById("shopWeapon2").innerHTML = `<p>${weapons[weaponNumber2].name}</p><p>${weapons[weaponNumber2].description}</p><p>${weaponPrice2}</p>`;
+    document.getElementById("shopWeapon1").innerHTML = `<p>${weapons[weaponNumber1].name.toUpperCase()}</p><p>${weapons[weaponNumber1].description.toUpperCase()}</p><p>${weaponPrice1}</p>`;
+    document.getElementById("shopWeapon2").innerHTML = `<p>${weapons[weaponNumber2].name.toUpperCase()}</p><p>${weapons[weaponNumber2].description.toUpperCase()}</p><p>${weaponPrice2}</p>`;
 
-    document.getElementById("shopUpgrade1").innerHTML = `<p>${upgrades[upgradeNumber1].name}</p><p>${upgrades[upgradeNumber1].description}</p><p>${upgradePrice1}</p>`;
-    document.getElementById("shopUpgrade2").innerHTML = `<p>${upgrades[upgradeNumber2].name}</p><p>${upgrades[upgradeNumber2].description}</p><p>${upgradePrice2}</p>`;
-    document.getElementById("shopUpgrade3").innerHTML = `<p>${upgrades[upgradeNumber3].name}</p><p>${upgrades[upgradeNumber3].description}</p><p>${upgradePrice3}</p>`;
+    document.getElementById("shopUpgrade1").innerHTML = `<p>${upgrades[upgradeNumber1].name.toUpperCase()}</p><p>${upgrades[upgradeNumber1].description.toUpperCase()}</p><p>${upgradePrice1}</p>`;
+    document.getElementById("shopUpgrade2").innerHTML = `<p>${upgrades[upgradeNumber2].name.toUpperCase()}</p><p>${upgrades[upgradeNumber2].description.toUpperCase()}</p><p>${upgradePrice2}</p>`;
+    document.getElementById("shopUpgrade3").innerHTML = `<p>${upgrades[upgradeNumber3].name.toUpperCase()}</p><p>${upgrades[upgradeNumber3].description.toUpperCase()}</p><p>${upgradePrice3}</p>`;
 
 }
 

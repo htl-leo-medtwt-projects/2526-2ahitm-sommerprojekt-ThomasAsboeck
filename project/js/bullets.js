@@ -107,7 +107,6 @@ function shoot(bulletSpeed, bpm, spread, damage, penetration, bulletCount, isAut
                 document.getElementById("bullet" + counter).style.height = bullets[counter].size + "px";
                 bulletsInWorld++;
                 counter++;
-                console.log(bulletCount);
                 bulletCooldown = 60000 / bpm;
             }
         }
