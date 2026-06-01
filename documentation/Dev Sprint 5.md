@@ -12,7 +12,7 @@
 - Viele bug fixes
 
 Commits:
-![[Pasted image 20260601122040.png]]
+[[imgForDevSprint/commits.png]]
 
 Code Frequency:
-![[Pasted image 20260601122145.png]]
+[[imgForDevSprint/code.png]]
