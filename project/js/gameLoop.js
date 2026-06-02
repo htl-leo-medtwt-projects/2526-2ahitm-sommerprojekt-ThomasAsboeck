@@ -46,6 +46,7 @@ function pauseGame() {
         document.getElementById("pauseScreen").remove();
     }
     else {
+        music.stop();
         music.volume(0.1 * VARIABLES_MENU.masterVolume * VARIABLES_MENU.musicVolume);
         let pauseScreen = document.createElement("div");
         pauseScreen.id = "pauseScreen";
