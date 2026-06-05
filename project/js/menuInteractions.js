@@ -39,11 +39,11 @@ function enterSettingsFromMainMenu() {
         </div>
     </div>`;
     document.getElementById("screen").innerHTML = html;
-    for(let i = 0; i < 5; i++) {
-        if (document.getElementById("resolution"+i).value == VARIABLES_MENU.scale) {
+    for (let i = 0; i < 5; i++) {
+        if (document.getElementById("resolution" + i).value == VARIABLES_MENU.scale) {
             let html = "";
-            html = `<option value="${VARIABLES_MENU.scale}" id="resolution${i}" selected>${document.getElementById("resolution"+i).innerHTML}</option>`;
-            document.getElementById("resolution"+i).outerHTML = html;
+            html = `<option value="${VARIABLES_MENU.scale}" id="resolution${i}" selected>${document.getElementById("resolution" + i).innerHTML}</option>`;
+            document.getElementById("resolution" + i).outerHTML = html;
         }
     }
     updateSettings();
@@ -91,11 +91,11 @@ function enterSettingsFromGame() {
             </div>
         </div>`;
     document.getElementById("settingsScreen").innerHTML = html;
-    for(let i = 0; i < 5; i++) {
-        if (document.getElementById("resolution"+i).value == VARIABLES_MENU.scale) {
+    for (let i = 0; i < 5; i++) {
+        if (document.getElementById("resolution" + i).value == VARIABLES_MENU.scale) {
             let html = "";
-            html = `<option value="VARIABLES_MENU.scale" id="resolution${i}" selected>${document.getElementById("resolution"+i).innerHTML}</option>`;
-            document.getElementById("resolution"+i).outerHTML = html;
+            html = `<option value="VARIABLES_MENU.scale" id="resolution${i}" selected>${document.getElementById("resolution" + i).innerHTML}</option>`;
+            document.getElementById("resolution" + i).outerHTML = html;
         }
     }
     updateSettings();
@@ -198,8 +198,27 @@ function enterMainMenu() {
                     SETTINGS
                 </div>
             </div>
-        </div>`
+        </div>
+            <div id="menuScoreboard">
+                <p id="menuScoreboardTitle">LEADERBOARD</p>
+                    <div id="menuScoreboardList">
+                        <div id="scoreboard">
+
+                        </div>
+                    </div>
+            </div>`
     document.getElementById("screen").innerHTML = html;
+    document.getElementById("scoreboard").innerHTML = "";
+    for (let i = 0; i < scoreboard.length; i++) {
+        const entry = document.createElement("div");
+        entry.className = "scoreboardEntry";
+        entry.innerHTML = `
+            <div class="scoreboardName">${scoreboard[i].name}</div>
+            <div class="scoreboardScore">Score: ${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">Kills: ${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">Survived for: ${scoreboard[i].timeSurvived}s</div>`;
+        document.getElementById("scoreboard").appendChild(entry);
+    }
 }
 
 function startGame() {

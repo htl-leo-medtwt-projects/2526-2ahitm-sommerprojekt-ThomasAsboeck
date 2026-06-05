@@ -14,9 +14,23 @@ if (localStorage.getItem("scale") != null) {
     VARIABLES_MENU.scale = localStorage.getItem("scale");
 }
 
+let scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+
 document.getElementById("screen").style.transform = `scale(${VARIABLES_MENU.scale})`;
 
 let isOnSettingsPage = false;
+
+document.getElementById("scoreboard").innerHTML = "";
+for (let i = 0; i < scoreboard.length; i++) {
+    const entry = document.createElement("div");
+    entry.className = "scoreboardEntry";
+    entry.innerHTML = `
+            <div class="scoreboardName">${scoreboard[i].name}</div>
+            <div class="scoreboardScore">Score: ${Math.floor(scoreboard[i].score)}</div>
+            <div class="scoreboardKills">Kills: ${scoreboard[i].kills}</div>
+            <div class="scoreboardTimeSurvived">Survived for: ${scoreboard[i].timeSurvived}s</div>`;
+    document.getElementById("scoreboard").appendChild(entry);
+}
 
 function menuLoop() {
     menuLoop()

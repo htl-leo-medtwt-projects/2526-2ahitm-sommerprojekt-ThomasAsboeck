@@ -1,7 +1,6 @@
 function death() {
     isPaused = true;
     player.score = player.score * player.kills * (player.timeSurvived / 1000);
-    let scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
     let html = "";
     html = `<div id="deathScreen">
     <div id="deathContainer">

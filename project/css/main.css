@@ -27,28 +27,29 @@
 
 body {
     margin: 0;
-    image-rendering: pixelated;
+    overflow: hidden;
     background-color: #0a0a08;
+    image-rendering: pixelated;
     font-family: Press_Start_2P;
     user-select: none;
-    overflow: hidden;
     font-size: 8px;
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #screen {
-    transform-origin: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -180px;        /* half of 360 */
+    margin-left: -320px;        /* half of 640 */
     transform: scale(4);
-    height: 360px;
+    transform-origin: center center;
     width: 640px;
+    height: 360px;
     background-image: url(../img/images/mainMenuBackground.jpg);
     background-repeat: no-repeat;
     background-size: 640px 360px;
-    margin-top: 0;
     overflow: hidden;
 }
 
@@ -96,6 +97,42 @@ body {
     padding-top: 16px;
 }
 
+#menuScoreboard {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    width: 170px;
+    height: 300px;
+    background-color: #1c1c17;
+    border: 1px solid #3a3a30;
+    padding: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#menuScoreboardTitle {
+    font-size: 8px;
+    color: #7a9050;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #3a3a30;
+}
+
+#menuScoreboardList {
+    overflow-y: scroll;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#menuScoreboardList::-webkit-scrollbar       { width: 4px; }
+#menuScoreboardList::-webkit-scrollbar-thumb { background-color: #7a9050; }
+#menuScoreboardList::-webkit-scrollbar-track { background-color: #111110; }
+
 /* ── Game World ──────────────────────────────────── */
 
 #player {
@@ -139,74 +176,49 @@ body {
 
 /* ── HUD ─────────────────────────────────────────── */
 
-#fpsCounter {
-    transform-origin: top right;
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 2rem;
-    padding: 16px;
-    color: #aab09a;
-    text-shadow: 0px 5px 0px #000000;
-}
+/* ── HUD ─────────────────────────────────────────── */
 
-#coinCounter {
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: 8px;
-    font-size: 2rem;
-    padding: 16px;
-    color: #aab09a;
-    text-shadow: 0px 5px 0px #000000;
-}
-
-#hpCounter {
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-left: 8px;
-    font-size: 2rem;
-    padding: 16px;
-    color: #aab09a;
-    text-shadow: 0px 5px 0px #000000;
-}
-
+#fpsCounter,
+#coinCounter,
+#hpCounter,
 #timeRemaining {
-    width: 100%;
-    height: fit-content;
     position: absolute;
-    text-align: center;
-    top: 0;
-    left: 0;
-    margin-left: 8px;
+    width: fit-content;
+    height: fit-content;
     font-size: 2rem;
-    padding: 16px;
+    padding: 8px 12px;
     color: #aab09a;
-    text-shadow: 0px 5px 0px #000000;
-    background-image: url();
+    background-color: #1c1c17;
+    border: 1px solid #3a3a30;
+    text-shadow: 0 2px 0 #000000;
+}
+
+#fpsCounter    { top: 8px;    right: 8px; }
+#coinCounter   { top: 8px;    left: 8px;  }
+#hpCounter     { bottom: 8px; left: 8px;  }
+#timeRemaining {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);   /* centered pill instead of full-width banner */
+    text-align: center;
 }
 
 #gunDisplay {
-    width: 64px;
-    height: 64px;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 8px;
-    padding: 16px;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: contain;
+    bottom: 8px;
+    right: 8px;
+    width: 128px;
+    height: 128px;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: #1c1c17;
+    border: 1px solid #3a3a30;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: -1;
+    background-size: contain;
+    background-origin: content-box;   /* sprite stays inside the padding */
     transform: scaleX(-1);
+    image-rendering: pixelated;
     filter: saturate(0.3);
 }
 
@@ -376,7 +388,20 @@ body {
 
 /* ── Tooltip ── */
 
-#shopTooltip {
+#shopTooltipWeapon {
+    display: none;
+    position: absolute;
+    flex-direction: row;   
+    gap: 8px;
+    width: 210px;          
+    background-color: #1c1c17;
+    border: 1px solid #7a9050;
+    padding: 6px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+#shopTooltipUpgrade {
     display: none;
     position: absolute;
     width: 140px;
@@ -426,6 +451,29 @@ body {
     min-width: 4px;   /* ← always visible even when value is near zero */
     outline: 1px solid #0a0a08;
     outline-offset: -1px;
+}
+
+#ttStatsPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+}
+
+#ttWeaponImg {
+    width: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111110;
+    border: 1px solid #3a3a30;
+}
+
+#ttWeaponImg img {
+    width: 80%;
+    image-rendering: pixelated;
+    filter: saturate(0.3);
 }
 
 /* Upgrade bonus rows */
