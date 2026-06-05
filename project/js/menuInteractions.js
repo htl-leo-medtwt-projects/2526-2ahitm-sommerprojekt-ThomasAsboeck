@@ -216,6 +216,7 @@ function startGame() {
     document.getElementById("timeRemaining")?.remove();
     document.getElementById("fpsCounter")?.remove();
     document.getElementById("hpCounter")?.remove();
+    document.getElementById("gunDisplay")?.remove();
     document.getElementById("screen").innerHTML = html;
     let coinCounter = document.createElement("div");
     coinCounter.id = "coinCounter";
@@ -232,6 +233,10 @@ function startGame() {
     let hpCounter = document.createElement("div");
     hpCounter.id = "hpCounter";
     document.body.appendChild(hpCounter);
+
+    let gunDisplay = document.createElement("div");
+    gunDisplay.id = "gunDisplay";
+    document.body.appendChild(gunDisplay);
 
     player = {
         difficulty: 1,

@@ -186,6 +186,7 @@ function gameLogic() {
         }
         frameTimer += deltaTime;
         document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000) + "S REMAINING";
+        document.getElementById("gunDisplay").style.backgroundImage = `url(./img/sprites/Guns/${player.currentWeapon}.png)`;
     }
 
 
@@ -195,7 +196,7 @@ function gameLogic() {
     fpsCounter++;
     fpsTimer += deltaTime;
     if (fpsTimer >= 500) {
-        document.getElementById("fpsCounter").innerHTML = Math.floor(fpsCounter) + "FPS";
+        document.getElementById("fpsCounter").innerHTML = Math.floor(fpsCounter*2) + "FPS";
         fpsCounter = 0;
         fpsTimer = 0;
     }
