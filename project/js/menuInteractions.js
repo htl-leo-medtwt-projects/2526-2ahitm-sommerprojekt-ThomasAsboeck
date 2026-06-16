@@ -181,6 +181,7 @@ function enterMainMenu() {
     document.getElementById("timeRemaining")?.remove();
     document.getElementById("fpsCounter")?.remove();
     document.getElementById("hpCounter")?.remove();
+    document.getElementById("gunDisplay")?.remove();
     isOnSettingsPage = false;
     let html = "";
     html = `<div id="main-menu-container">

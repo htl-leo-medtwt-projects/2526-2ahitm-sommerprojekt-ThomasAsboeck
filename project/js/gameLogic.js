@@ -187,6 +187,9 @@ function gameLogic() {
         frameTimer += deltaTime;
         document.getElementById("timeRemaining").innerHTML = Math.floor(player.timeRemaining / 1000) + "S REMAINING";
         document.getElementById("gunDisplay").style.backgroundImage = `url(./img/sprites/Guns/${player.currentWeapon}.png)`;
+        if (player.hp <= 0) {
+            player.hp = 0;
+        }
     }
 
 
